@@ -7,6 +7,8 @@
 > See API tab.
 > API tab may not be complete. Props should include all props of `InputWithOptions`, which includes all props of `Input` and `DropdownLayout`.
 
+> Similar to `DropdownLayout` When both `selectedId` and `onSelect` are passed, `Dropdown` will be Controlled 
+
 ## Option (an item in the `options` prop)
 
 | propName | propType | defaultValue | isRequired | description |

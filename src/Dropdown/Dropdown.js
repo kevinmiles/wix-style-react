@@ -67,11 +67,20 @@ class Dropdown extends InputWithOptions {
     return { readOnly: true, value: this.state.value };
   }
 
+  _isControlled() {
+    return (
+      typeof this.props.selectedId !== 'undefined' &&
+      typeof this.props.onSelect !== 'undefined'
+    );
+  }
+
   _onSelect(option) {
-    this.setState({
-      value: this.props.valueParser(option),
-      selectedId: option.id,
-    });
+    if (!this._isControlled()) {
+      this.setState({
+        value: this.props.valueParser(option),
+        selectedId: option.id,
+      });
+    }
     super._onSelect(option);
   }
 }

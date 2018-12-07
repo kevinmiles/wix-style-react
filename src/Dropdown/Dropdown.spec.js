@@ -32,6 +32,20 @@ describe('Dropdown', () => {
     expect(inputDriver.getValue()).toBe('Option 1');
   });
 
+  it('should not set item value when controlled', () => {
+    const onSelect = jest.fn();
+    const { driver, inputDriver, dropdownLayoutDriver } = createDriver(
+      <Dropdown options={getOptions()} selectedId={0} onSelect={onSelect} />
+    );
+
+    driver.focus();
+    dropdownLayoutDriver.clickAtOption(1);
+
+    expect(onSelect).toBeCalledWith(getOptions()[1]);
+    expect(dropdownLayoutDriver.isOptionSelected(1)).toBeFalsy();
+    expect(inputDriver.getValue()).not.toBe('Option 2');
+  });
+
   it('should select an item when clicked', () => {
     const { driver, dropdownLayoutDriver } = createDriver(
       <Dropdown options={getOptions()} />,
