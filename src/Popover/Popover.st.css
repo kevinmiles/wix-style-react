@@ -9,11 +9,6 @@
 }
 
 :import {
-  -st-from: "wix-ui-backoffice/src/typography.st.css";
-  -st-named: fontRoman;
-}
-
-:import {
   -st-from: "wix-ui-backoffice/src/shadows.st.css";
   -st-named: shadow30;
 }
