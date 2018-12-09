@@ -40,7 +40,8 @@
     "postpublish": "npm install teamcity-surge-autorelease@^1.0.0 --no-save && teamcity-surge-autorelease",
     "export-components": "import-path --path src",
     "lint": "yoshi lint",
-    "proxy-wix-ui-icons": "node scripts/proxy-wix-ui-icons"
+    "proxy-wix-ui-icons": "node scripts/proxy-wix-ui-icons",
+    "generate": "./scripts/component-generator/bin/component-generator.js"
   },
   "yoshi": {
     "entry": {
