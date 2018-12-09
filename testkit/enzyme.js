@@ -500,3 +500,12 @@ import { closeButtonDriverFactory } from '../src/CloseButton/CloseButton.driver'
 export const closeButtonTestkitFactory = enzymeUniTestkitFactoryCreator(
   closeButtonDriverFactory,
 );
+
+/*
+ * Component generator test component
+ */
+import { generatedTestComponentDriverFactory } from '../src/GeneratedTestComponent/GeneratedTestComponent.driver';
+
+export const generatedTestComponentTestkitFactory = enzymeUniTestkitFactoryCreator(
+  generatedTestComponentDriverFactory,
+);

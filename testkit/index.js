@@ -476,3 +476,12 @@ import { closeButtonDriverFactory } from '../src/CloseButton/CloseButton.driver'
 export const closeButtonTestkitFactory = uniTestkitFactoryCreator(
   closeButtonDriverFactory,
 );
+
+/*
+ * Component generator test component
+ */
+import { generatedTestComponentDriverFactory } from '../src/GeneratedTestComponent/GeneratedTestComponent.driver';
+
+export const generatedTestComponentTestkitFactory = uniTestkitFactoryCreator(
+  generatedTestComponentDriverFactory,
+);

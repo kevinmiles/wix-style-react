@@ -14,7 +14,7 @@ const createFileMap = ({ ComponentName, description, testComponent }) => {
     'src/Component/Component.spec.js',
     'src/Component/index.js',
 
-    // If `testComponent === true`, we won't generate a storySettings file for now
+    // If `testComponent === true`, we won't generate a story for now
     ...(!testComponent
       ? [
           'stories/Component/storySettings.js',
