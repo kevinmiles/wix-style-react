@@ -4,7 +4,7 @@ const utils = require('./utils');
 const replaceTemplates = require('./replace-templates');
 const createValuesMap = require('./create-values-map');
 
-const createFileMap = ({ componentName, description }) => {
+const createFileMap = ({ ComponentName, description }) => {
   const filesToCopy = [
     'src/Component/Component.driver.js',
     'src/Component/Component.driver.private.js',
@@ -21,7 +21,7 @@ const createFileMap = ({ componentName, description }) => {
   ];
 
   return filesToCopy.reduce((res, curr) => {
-    res[curr] = curr.replace(/Component/g, componentName);
+    res[curr] = curr.replace(/Component/g, ComponentName);
 
     return res;
   }, {});
