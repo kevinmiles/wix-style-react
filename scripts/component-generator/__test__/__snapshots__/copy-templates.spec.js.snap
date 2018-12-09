@@ -648,24 +648,18 @@ export default {
     // Put here presets of props, for more info:
     // https://github.com/wix/wix-ui/blob/master/packages/wix-storybook-utils/docs/usage.md#using-list
   },
-
-  examples: (
-    <div style={{ maxWidth: 627 }}>
-      <LiveCodeExample
-        compact
-        title=\\"Live code example\\"
-        initialCode={\`
-<MyTestComponent
-  dataHook=\\"story-my-test-component-live-example\\"
-  buttonText=\\"Press me for a surprise\\"
-  />
-        \`}
-      />
-    </div>
-  ),
 };
 
 ",
-  "stories/MyTestComponent/storySettings.js": "",
+  "stories/MyTestComponent/storySettings.js": "import { TESTS_PREFIX } from '../storiesHierarchy';
+
+export const storySettings = {
+  kind: TESTS_PREFIX,
+  category: TESTS_PREFIX,
+
+  storyName: 'MyTestComponent',
+  dataHook: 'story-my-test-component',
+};
+",
 }
 `;

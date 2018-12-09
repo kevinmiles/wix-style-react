@@ -14,10 +14,13 @@ const createFileMap = ({ ComponentName, description, testComponent }) => {
     'src/Component/Component.spec.js',
     'src/Component/index.js',
 
-    'stories/Component/index.story.js',
-
     // If `testComponent === true`, we won't generate a storySettings file for now
-    ...(!testComponent ? ['stories/Component/storySettings.js'] : []),
+    ...(!testComponent
+      ? [
+          'stories/Component/storySettings.js',
+          'stories/Component/index.story.js',
+        ]
+      : []),
 
     // Create README only if we have a description
     ...(description ? ['src/Component/README.md'] : []),
@@ -68,6 +71,9 @@ module.exports = async answers => {
         'stories/Component/storySettings.js': `stories/${
           answers.ComponentName
         }/storySettings.js`,
+        'stories/Component/index.story.js': `stories/${
+          answers.ComponentName
+        }/index.story.js`,
       },
       valuesMap,
       'test-component',
