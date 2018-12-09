@@ -13,10 +13,8 @@ import '../stories/NewIcons'; // 1.4 Icons
 import '../stories/Collapse.story';
 import '../stories/Counter/index.story';
 
-// Generated components using the component generator
-import '../stories/SomePreviouslyGeneratedComponent/index.story';
-import '../stories/MyNewComponent/index.story';
-import '../stories/AnotherSomePreviouslyGeneratedComponent/index.story';
-
 // Styling
 import '../stories/Typography/TypographyClassesStory';
+
+// This import was added by the component generator
+import '../stories/MyNewComponent/index.story';
