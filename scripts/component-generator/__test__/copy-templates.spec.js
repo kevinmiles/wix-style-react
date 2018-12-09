@@ -71,4 +71,16 @@ describe('copyTemplates', () => {
 
     expect(getDirSnapshot(tempDir)).toMatchSnapshot();
   });
+
+  it('should work for test component', async () => {
+    const answers = {
+      ComponentName: 'MyTestComponent',
+      description: undefined,
+      testComponent: true,
+    };
+
+    await copyTemplates(answers);
+
+    expect(getDirSnapshot(tempDir)).toMatchSnapshot();
+  });
 });

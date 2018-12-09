@@ -28,7 +28,8 @@ const pascalCaseToSnakeCase = str =>
 const isComponentExists = componentName =>
   fs.existsSync(path.join(getProjectRoot(), 'src', componentName));
 
-const getTemplatePath = p => path.join(__dirname, '../templates/component', p);
+const getTemplatePath = (p, template) =>
+  path.join(__dirname, '../templates', template, p);
 const getDestinationPath = p => path.join(getProjectRoot(), p);
 
 module.exports = {

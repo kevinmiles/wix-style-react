@@ -11,9 +11,8 @@ module.exports = async (cwd, options) => {
     skipGitChecks: options.force,
   });
 
-  const answers = await runPrompts();
+  const answers = options.answers || (await runPrompts());
 
-  logger.divider();
   logger.info(
     `Generating a new ${chalk.cyan(
       `<${answers.ComponentName}/>`,
@@ -23,7 +22,10 @@ module.exports = async (cwd, options) => {
   logger.divider();
 
   await copyTemplates(answers);
-  await runCodemods(answers);
+
+  if (!options.skipCodemods) {
+    await runCodemods(answers);
+  }
 
   logger.divider();
 

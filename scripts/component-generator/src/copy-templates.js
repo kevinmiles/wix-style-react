@@ -4,7 +4,7 @@ const utils = require('./utils');
 const replaceTemplates = require('./replace-templates');
 const createValuesMap = require('./create-values-map');
 
-const createFileMap = ({ ComponentName, description }) => {
+const createFileMap = ({ ComponentName, description, testComponent }) => {
   const filesToCopy = [
     'src/Component/Component.driver.js',
     'src/Component/Component.driver.private.js',
@@ -15,8 +15,11 @@ const createFileMap = ({ ComponentName, description }) => {
     'src/Component/index.js',
 
     'stories/Component/index.story.js',
-    'stories/Component/storySettings.js',
 
+    // If `testComponent === true`, we won't generate a storySettings file for now
+    ...(!testComponent ? ['stories/Component/storySettings.js'] : []),
+
+    // Create README only if we have a description
     ...(description ? ['src/Component/README.md'] : []),
   ];
 
@@ -27,8 +30,8 @@ const createFileMap = ({ ComponentName, description }) => {
   }, {});
 };
 
-const copyTemplate = (src, dest, valuesMap) => {
-  const templatePath = utils.getTemplatePath(src);
+const copyTemplate = (src, dest, valuesMap, template) => {
+  const templatePath = utils.getTemplatePath(src, template);
   const destinationPath = utils.getDestinationPath(dest);
 
   const transformedFileContents = replaceTemplates(
@@ -39,17 +42,35 @@ const copyTemplate = (src, dest, valuesMap) => {
   fs.outputFileSync(destinationPath, transformedFileContents);
 };
 
-module.exports = async answers => {
-  const fileMap = createFileMap(answers);
-  const valuesMap = createValuesMap(answers);
-
+const copyTemplates = async (fileMap, valuesMap, template = 'component') => {
   for (const [src, dest] of Object.entries(fileMap)) {
     try {
-      await copyTemplate(src, dest, valuesMap);
+      await copyTemplate(src, dest, valuesMap, template);
       logger.success(`Creating ${dest}`);
     } catch (e) {
       logger.error(`Creating ${dest}`);
       throw e;
     }
+  }
+};
+
+module.exports = async answers => {
+  const fileMap = createFileMap(answers);
+  const valuesMap = createValuesMap(answers);
+
+  // Copy file
+  await copyTemplates(fileMap, valuesMap);
+
+  // Copy `testComponent` files
+  if (answers.testComponent) {
+    await copyTemplates(
+      {
+        'stories/Component/storySettings.js': `stories/${
+          answers.ComponentName
+        }/storySettings.js`,
+      },
+      valuesMap,
+      'test-component',
+    );
   }
 };

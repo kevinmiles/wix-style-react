@@ -41,8 +41,19 @@ describe('utils', () => {
   });
 
   test('getTemplatePath', () => {
-    expect(utils.getTemplatePath('src/Component/index.js')).toEqual(
+    expect(
+      utils.getTemplatePath('src/Component/index.js', 'component'),
+    ).toEqual(
       path.join(__dirname, '../templates/component/src/Component/index.js'),
+    );
+
+    expect(
+      utils.getTemplatePath('src/Component/index.js', 'test-component'),
+    ).toEqual(
+      path.join(
+        __dirname,
+        '../templates/test-component/src/Component/index.js',
+      ),
     );
   });
 
