@@ -2,6 +2,7 @@ const fs = require('fs-extra');
 const logger = require('./logger');
 const utils = require('./utils');
 const replaceTemplates = require('./replace-templates');
+const createValuesMap = require('./create-values-map');
 
 const createFileMap = ({ componentName, description }) => {
   const filesToCopy = [
@@ -26,13 +27,13 @@ const createFileMap = ({ componentName, description }) => {
   }, {});
 };
 
-const copyTemplate = (src, dest, answers) => {
+const copyTemplate = (src, dest, valuesMap) => {
   const templatePath = utils.getTemplatePath(src);
   const destinationPath = utils.getDestinationPath(dest);
 
   const transformedFileContents = replaceTemplates(
     fs.readFileSync(templatePath, 'utf-8'),
-    answers,
+    valuesMap,
   );
 
   fs.outputFileSync(destinationPath, transformedFileContents);
@@ -40,10 +41,11 @@ const copyTemplate = (src, dest, answers) => {
 
 module.exports = async answers => {
   const fileMap = createFileMap(answers);
+  const valuesMap = createValuesMap(answers);
 
   for (const [src, dest] of Object.entries(fileMap)) {
     try {
-      await copyTemplate(src, dest, answers);
+      await copyTemplate(src, dest, valuesMap);
       logger.success(`Creating ${dest}`);
     } catch (e) {
       logger.error(`Creating ${dest}`);

@@ -8,7 +8,7 @@ module.exports = async () => {
   const questions = [
     {
       type: 'text',
-      name: 'componentName',
+      name: 'ComponentName',
       message: 'Component name (PascalCase)',
       validate: value => {
         if (!value.length) {

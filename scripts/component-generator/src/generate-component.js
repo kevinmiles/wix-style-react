@@ -15,7 +15,7 @@ module.exports = async (cwd, options) => {
   logger.divider();
   logger.info(
     `Generating a new ${chalk.cyan(
-      `<${answers.componentName}/>`,
+      `<${answers.ComponentName}/>`,
     )} component for you...`,
   );
 
@@ -27,7 +27,7 @@ module.exports = async (cwd, options) => {
 
   logger.success(
     `The ${chalk.cyan(
-      `<${answers.componentName}/>`,
+      `<${answers.ComponentName}/>`,
     )} component has been genearted!`,
   );
 };

@@ -168,7 +168,8 @@
     },
     "testPathIgnorePatterns": [
       "<rootDir>/dist/",
-      "<rootDir>/node_modules/"
+      "<rootDir>/node_modules/",
+      "<rootDir>/scripts/component-generator/templates/"
     ]
   },
   "babel": {
@@ -184,6 +185,9 @@
     ],
     "plugins": [
       "transform-decorators-legacy"
+    ],
+    "ignore": [
+      "./scripts/component-generator/templates/"
     ]
   },
   "eslintConfig": {

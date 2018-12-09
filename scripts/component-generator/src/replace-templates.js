@@ -1,7 +1,7 @@
 // Extracted from
 // https://github.com/wix/yoshi/blob/master/packages/create-yoshi-app/src/replaceTemplates.js
 
-const templateRegex = /{%\w+%}/g;
+const templateRegex = /{%[\w-]+%}/g;
 
 module.exports = (content, map) => {
   function replacer(match) {

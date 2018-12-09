@@ -1,16 +1,455 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`copyTemplates should work as expected 1`] = `
+exports[`copyTemplates should work as expected when description is not provided 1`] = `
 Object {
-  "src/MyNewComponent/MyNewComponent.driver.js": "",
-  "src/MyNewComponent/MyNewComponent.driver.private.js": "",
-  "src/MyNewComponent/MyNewComponent.e2e.js": "",
-  "src/MyNewComponent/MyNewComponent.js": "",
-  "src/MyNewComponent/MyNewComponent.scss": "",
-  "src/MyNewComponent/MyNewComponent.spec.js": "",
-  "src/MyNewComponent/README.md": "",
-  "src/MyNewComponent/index.js": "",
-  "stories/MyNewComponent/index.story.js": "",
-  "stories/MyNewComponent/storySettings.js": "",
+  "src/undefined/index.js": "export { default } from './MyNewComponent.js';
+",
+  "src/undefined/undefined.driver.js": "import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
+
+export const myNewComponentDriverFactory = base => {
+  return {
+    ...baseUniDriverFactory(base),
+
+    /** Get the current count */
+    getCountText: async () => base.$('[data-hook=\\"myNewComponent-count\\"]').text(),
+
+    /** Click the button */
+    clickButton: async () => base.$('[data-hook=\\"myNewComponent-button\\"]').click(),
+
+    /** Get the button's text */
+    getButtonText: async () => base.$('[data-hook=\\"myNewComponent-button\\"]').text(),
+  };
+};
+",
+  "src/undefined/undefined.driver.private.js": "import { myNewComponentDriverFactory as publicDriverFactory } from './MyNewComponent.driver';
+
+export const myNewComponentPrivateDriverFactory = base => {
+  return {
+    ...publicDriverFactory(base),
+
+    // Add here driver methods that considered \\"private\\"
+  };
+};
+",
+  "src/undefined/undefined.e2e.js": "import {
+  createStoryUrl,
+  waitForVisibilityOf,
+  scrollToElement,
+} from 'wix-ui-test-utils/protractor';
+
+import { eyesItInstance } from '../../test/utils/eyes-it';
+import { myNewComponentTestkitFactory } from '../../testkit/protractor';
+import { storySettings } from '../../stories/MyNewComponent/storySettings';
+
+const eyes = eyesItInstance();
+
+describe('MyNewComponent', () => {
+  const storyUrl = createStoryUrl({
+    kind: storySettings.category,
+    story: storySettings.storyName,
+  });
+
+  const createDriver = async (dataHook = storySettings.dataHook) => {
+    const driver = myNewComponentTestkitFactory({ dataHook });
+
+    await waitForVisibilityOf(
+      await driver.element(),
+      \`Cannot find <MyNewComponent/> component with dataHook of \${dataHook}\`,
+    );
+
+    await scrollToElement(driver.element());
+
+    return driver;
+  };
+
+  beforeAll(async () => {
+    await browser.get(storyUrl);
+  });
+
+  eyes.it('should render', async () => {
+    await createDriver();
+  });
+
+  eyes.it('should render live example', async () => {
+    await createDriver('story-my-new-component-live-example');
+  });
+});
+",
+  "src/undefined/undefined.js": "import React from 'react';
+import PropTypes from 'prop-types';
+import styles from './MyNewComponent.scss';
+
+import Text from '../Text';
+import Button from '../Button';
+
+class MyNewComponent extends React.PureComponent {
+  static displayName = 'MyNewComponent';
+
+  static propTypes = {
+    dataHook: PropTypes.string,
+
+    /** Text for the button */
+    buttonText: PropTypes.string,
+  };
+
+  static defaultProps = {
+    buttonText: 'Click me!',
+  };
+
+  state = {
+    count: 0,
+  };
+
+  _handleClick = () => {
+    this.setState(({ count }) => ({
+      count: count + 1,
+    }));
+  };
+
+  render() {
+    const { count } = this.state;
+    const { dataHook, buttonText } = this.props;
+
+    return (
+      <div className={styles.root} data-hook={dataHook}>
+        <Text dataHook=\\"myNewComponent-count\\">
+          You clicked this button {count} times
+        </Text>
+
+        <div className={styles.button}>
+          <Button onClick={this._handleClick} dataHook=\\"myNewComponent-button\\">
+            {buttonText}
+          </Button>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default MyNewComponent;
+",
+  "src/undefined/undefined.scss": ".root {
+  text-align: center;
+}
+
+.button {
+  display: flex;
+  justify-content: space-evenly;
+}
+",
+  "src/undefined/undefined.spec.js": "import React from 'react';
+import { createUniDriverFactory } from 'wix-ui-test-utils/uni-driver-factory';
+
+import MyNewComponent from './MyNewComponent';
+import { myNewComponentPrivateDriverFactory } from './MyNewComponent.driver.private';
+
+describe('MyNewComponent', () => {
+  const createDriver = createUniDriverFactory(myNewComponentPrivateDriverFactory);
+
+  it('should render', async () => {
+    const driver = createDriver(<MyNewComponent />);
+
+    expect(await driver.exists()).toBeTruthy();
+    expect(await driver.getButtonText()).toEqual('Click me!');
+  });
+
+  it('should increment', async () => {
+    const driver = createDriver(<MyNewComponent />);
+
+    await driver.clickButton();
+    await driver.clickButton();
+
+    expect(await driver.getCountText()).toEqual(
+      'You clicked this button 2 times',
+    );
+  });
+
+  it('should allow changing the button text', async () => {
+    const driver = createDriver(<MyNewComponent buttonText=\\"Press me\\" />);
+
+    expect(await driver.getButtonText()).toEqual('Press me');
+  });
+});
+
+",
+  "stories/undefined/index.story.js": "import React from 'react';
+import { storySettings } from './storySettings';
+import LiveCodeExample from '../utils/Components/LiveCodeExample';
+
+import MyNewComponent from '../../src/MyNewComponent';
+
+export default {
+  category: storySettings.kind,
+  storyName: storySettings.storyName,
+
+  component: MyNewComponent,
+  componentPath: '../../src/MyNewComponent/MyNewComponent.js',
+
+  componentProps: {
+    dataHook: storySettings.dataHook,
+    buttonText: undefined,
+  },
+
+  exampleProps: {
+    // Put here presets of props, for more info:
+    // https://github.com/wix/wix-ui/blob/master/packages/wix-storybook-utils/docs/usage.md#using-list
+  },
+
+  examples: (
+    <div style={{ maxWidth: 627 }}>
+      <LiveCodeExample
+        compact
+        title=\\"Live code example\\"
+        initialCode={\`
+<MyNewComponent
+  dataHook=\\"story-my-new-component-live-example\\"
+  buttonText=\\"Press me for a surprise\\"
+  />
+        \`}
+      />
+    </div>
+  ),
+};
+
+",
+  "stories/undefined/storySettings.js": "import { Category } from '../storiesHierarchy';
+
+export const storySettings = {
+  kind: Category.COMPONENTS,
+  category: Category.COMPONENTS,
+
+  storyName: 'MyNewComponent',
+  dataHook: 'story-my-new-component',
+};
+",
+}
+`;
+
+exports[`copyTemplates should work as expected when description is provided 1`] = `
+Object {
+  "src/undefined/README.md": "# \`<MyNewComponent/>\`
+
+> This is a very cool component, ya'll
+",
+  "src/undefined/index.js": "export { default } from './MyNewComponent.js';
+",
+  "src/undefined/undefined.driver.js": "import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
+
+export const myNewComponentDriverFactory = base => {
+  return {
+    ...baseUniDriverFactory(base),
+
+    /** Get the current count */
+    getCountText: async () => base.$('[data-hook=\\"myNewComponent-count\\"]').text(),
+
+    /** Click the button */
+    clickButton: async () => base.$('[data-hook=\\"myNewComponent-button\\"]').click(),
+
+    /** Get the button's text */
+    getButtonText: async () => base.$('[data-hook=\\"myNewComponent-button\\"]').text(),
+  };
+};
+",
+  "src/undefined/undefined.driver.private.js": "import { myNewComponentDriverFactory as publicDriverFactory } from './MyNewComponent.driver';
+
+export const myNewComponentPrivateDriverFactory = base => {
+  return {
+    ...publicDriverFactory(base),
+
+    // Add here driver methods that considered \\"private\\"
+  };
+};
+",
+  "src/undefined/undefined.e2e.js": "import {
+  createStoryUrl,
+  waitForVisibilityOf,
+  scrollToElement,
+} from 'wix-ui-test-utils/protractor';
+
+import { eyesItInstance } from '../../test/utils/eyes-it';
+import { myNewComponentTestkitFactory } from '../../testkit/protractor';
+import { storySettings } from '../../stories/MyNewComponent/storySettings';
+
+const eyes = eyesItInstance();
+
+describe('MyNewComponent', () => {
+  const storyUrl = createStoryUrl({
+    kind: storySettings.category,
+    story: storySettings.storyName,
+  });
+
+  const createDriver = async (dataHook = storySettings.dataHook) => {
+    const driver = myNewComponentTestkitFactory({ dataHook });
+
+    await waitForVisibilityOf(
+      await driver.element(),
+      \`Cannot find <MyNewComponent/> component with dataHook of \${dataHook}\`,
+    );
+
+    await scrollToElement(driver.element());
+
+    return driver;
+  };
+
+  beforeAll(async () => {
+    await browser.get(storyUrl);
+  });
+
+  eyes.it('should render', async () => {
+    await createDriver();
+  });
+
+  eyes.it('should render live example', async () => {
+    await createDriver('story-my-new-component-live-example');
+  });
+});
+",
+  "src/undefined/undefined.js": "import React from 'react';
+import PropTypes from 'prop-types';
+import styles from './MyNewComponent.scss';
+
+import Text from '../Text';
+import Button from '../Button';
+
+class MyNewComponent extends React.PureComponent {
+  static displayName = 'MyNewComponent';
+
+  static propTypes = {
+    dataHook: PropTypes.string,
+
+    /** Text for the button */
+    buttonText: PropTypes.string,
+  };
+
+  static defaultProps = {
+    buttonText: 'Click me!',
+  };
+
+  state = {
+    count: 0,
+  };
+
+  _handleClick = () => {
+    this.setState(({ count }) => ({
+      count: count + 1,
+    }));
+  };
+
+  render() {
+    const { count } = this.state;
+    const { dataHook, buttonText } = this.props;
+
+    return (
+      <div className={styles.root} data-hook={dataHook}>
+        <Text dataHook=\\"myNewComponent-count\\">
+          You clicked this button {count} times
+        </Text>
+
+        <div className={styles.button}>
+          <Button onClick={this._handleClick} dataHook=\\"myNewComponent-button\\">
+            {buttonText}
+          </Button>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default MyNewComponent;
+",
+  "src/undefined/undefined.scss": ".root {
+  text-align: center;
+}
+
+.button {
+  display: flex;
+  justify-content: space-evenly;
+}
+",
+  "src/undefined/undefined.spec.js": "import React from 'react';
+import { createUniDriverFactory } from 'wix-ui-test-utils/uni-driver-factory';
+
+import MyNewComponent from './MyNewComponent';
+import { myNewComponentPrivateDriverFactory } from './MyNewComponent.driver.private';
+
+describe('MyNewComponent', () => {
+  const createDriver = createUniDriverFactory(myNewComponentPrivateDriverFactory);
+
+  it('should render', async () => {
+    const driver = createDriver(<MyNewComponent />);
+
+    expect(await driver.exists()).toBeTruthy();
+    expect(await driver.getButtonText()).toEqual('Click me!');
+  });
+
+  it('should increment', async () => {
+    const driver = createDriver(<MyNewComponent />);
+
+    await driver.clickButton();
+    await driver.clickButton();
+
+    expect(await driver.getCountText()).toEqual(
+      'You clicked this button 2 times',
+    );
+  });
+
+  it('should allow changing the button text', async () => {
+    const driver = createDriver(<MyNewComponent buttonText=\\"Press me\\" />);
+
+    expect(await driver.getButtonText()).toEqual('Press me');
+  });
+});
+
+",
+  "stories/undefined/index.story.js": "import React from 'react';
+import { storySettings } from './storySettings';
+import LiveCodeExample from '../utils/Components/LiveCodeExample';
+
+import MyNewComponent from '../../src/MyNewComponent';
+
+export default {
+  category: storySettings.kind,
+  storyName: storySettings.storyName,
+
+  component: MyNewComponent,
+  componentPath: '../../src/MyNewComponent/MyNewComponent.js',
+
+  componentProps: {
+    dataHook: storySettings.dataHook,
+    buttonText: undefined,
+  },
+
+  exampleProps: {
+    // Put here presets of props, for more info:
+    // https://github.com/wix/wix-ui/blob/master/packages/wix-storybook-utils/docs/usage.md#using-list
+  },
+
+  examples: (
+    <div style={{ maxWidth: 627 }}>
+      <LiveCodeExample
+        compact
+        title=\\"Live code example\\"
+        initialCode={\`
+<MyNewComponent
+  dataHook=\\"story-my-new-component-live-example\\"
+  buttonText=\\"Press me for a surprise\\"
+  />
+        \`}
+      />
+    </div>
+  ),
+};
+
+",
+  "stories/undefined/storySettings.js": "import { Category } from '../storiesHierarchy';
+
+export const storySettings = {
+  kind: Category.COMPONENTS,
+  category: Category.COMPONENTS,
+
+  storyName: 'MyNewComponent',
+  dataHook: 'story-my-new-component',
+};
+",
 }
 `;

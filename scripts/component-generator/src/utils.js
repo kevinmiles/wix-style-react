@@ -16,6 +16,15 @@ const isGitRepoClean = cwd =>
 
 const isPascalCase = value => /^([A-Z][a-z]*)+$/.test(value);
 
+const pascalCaseToCamelCase = str =>
+  str.replace(/^./, match => match.toLowerCase());
+
+const pascalCaseToSnakeCase = str =>
+  pascalCaseToCamelCase(str).replace(
+    /[A-Z]/g,
+    match => `-${match.toLowerCase()}`,
+  );
+
 const isComponentExists = componentName =>
   fs.existsSync(path.join(getProjectRoot(), 'src', componentName));
 
@@ -27,6 +36,8 @@ module.exports = {
   isProjectRoot,
   isGitRepoClean,
   isPascalCase,
+  pascalCaseToCamelCase,
+  pascalCaseToSnakeCase,
   isComponentExists,
   getTemplatePath,
   getDestinationPath,

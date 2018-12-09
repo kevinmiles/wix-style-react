@@ -50,10 +50,21 @@ describe('copyTemplates', () => {
     succesSpy.mockRestore();
   });
 
-  it('should work as expected', async () => {
+  it('should work as expected when description is provided', async () => {
     const answers = {
-      componentName: 'MyNewComponent',
+      ComponentName: 'MyNewComponent',
       description: "This is a very cool component, ya'll",
+    };
+
+    await copyTemplates(answers);
+
+    expect(getDirSnapshot(tempDir)).toMatchSnapshot();
+  });
+
+  it('should work as expected when description is not provided', async () => {
+    const answers = {
+      ComponentName: 'MyNewComponent',
+      description: undefined,
     };
 
     await copyTemplates(answers);

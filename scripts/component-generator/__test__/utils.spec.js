@@ -22,6 +22,19 @@ describe('utils', () => {
     expect(utils.isPascalCase('PCase')).toBeTruthy();
   });
 
+  test('pascalCaseToCamelCase', () => {
+    expect(utils.pascalCaseToCamelCase('Component')).toEqual('component');
+    expect(utils.pascalCaseToCamelCase('MyComponent')).toEqual('myComponent');
+  });
+
+  test('pascalCaseToSnakeCase', () => {
+    expect(utils.pascalCaseToSnakeCase('Component')).toEqual('component');
+    expect(utils.pascalCaseToSnakeCase('MyComponent')).toEqual('my-component');
+    expect(utils.pascalCaseToSnakeCase('MyAwesomeComponent')).toEqual(
+      'my-awesome-component',
+    );
+  });
+
   test('isComponentExists', () => {
     expect(utils.isComponentExists('EmptyState')).toEqual(true);
     expect(utils.isComponentExists('MyNewComponent')).toEqual(false);
