@@ -35,4 +35,11 @@ module.exports = async ({ ComponentName }) => {
     utils.getDestinationPath('.storybook/stories.js'),
     { ComponentName },
   );
+
+  // Add to index file
+  await runTransform(
+    'index-file.js',
+    utils.getDestinationPath('src/index.js'),
+    { ComponentName },
+  );
 };
