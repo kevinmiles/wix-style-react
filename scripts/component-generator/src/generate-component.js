@@ -4,6 +4,7 @@ const logger = require('./logger');
 const verifyWorkingDirectory = require('./verify-working-directory');
 const runPrompts = require('./run-prompts');
 const copyTemplates = require('./copy-templates');
+const runCodemods = require('./run-codemods');
 
 module.exports = async (cwd, options) => {
   await verifyWorkingDirectory(cwd, {
@@ -22,6 +23,7 @@ module.exports = async (cwd, options) => {
   logger.divider();
 
   await copyTemplates(answers);
+  await runCodemods(answers);
 
   logger.divider();
 
