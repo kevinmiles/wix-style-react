@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`copyTemplates should work as expected 1`] = `
+Object {
+  "src/MyNewComponent/MyNewComponent.driver.js": "",
+  "src/MyNewComponent/MyNewComponent.driver.private.js": "",
+  "src/MyNewComponent/MyNewComponent.e2e.js": "",
+  "src/MyNewComponent/MyNewComponent.js": "",
+  "src/MyNewComponent/MyNewComponent.scss": "",
+  "src/MyNewComponent/MyNewComponent.spec.js": "",
+  "src/MyNewComponent/README.md": "",
+  "src/MyNewComponent/index.js": "",
+  "stories/MyNewComponent/index.story.js": "",
+  "stories/MyNewComponent/storySettings.js": "",
+}
+`;

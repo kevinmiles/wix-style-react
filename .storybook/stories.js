@@ -120,6 +120,8 @@ import '../stories/Text/index.story';
 import '../stories/Skeleton.story.js';
 import '../stories/Collapse.story';
 
+// Generated components using the component generator
+
 // Styling
 import '../stories/Typography/TypographyClassesStory';
 
