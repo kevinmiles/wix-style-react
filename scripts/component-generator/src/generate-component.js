@@ -30,6 +30,6 @@ module.exports = async (cwd, options) => {
   logger.success(
     `The ${chalk.cyan(
       `<${answers.ComponentName}/>`,
-    )} component has been genearted!`,
+    )} component has been generated!`,
   );
 };
