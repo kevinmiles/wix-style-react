@@ -6,7 +6,7 @@ import WixComponent from '../BaseComponents/WixComponent';
 
 import style from './Popover.st.css';
 
-class Popover extends WixComponent {
+class Popover extends React.Component {
   static displayName = 'Popover';
 
   static Element = CorePopover.Element;
@@ -14,7 +14,6 @@ class Popover extends WixComponent {
 
   static propTypes = {
     ...CorePopover.propTypes,
-    ...WixComponent.propTypes,
 
     /** Callback to be called when the user perform a click outside of the component */
     onClickOutside: PropTypes.func,
@@ -60,18 +59,6 @@ class Popover extends WixComponent {
   static defaultProps = {
     appendTo: 'parent',
   };
-
-  onClickOutside(e) {
-    this.props.onClickOutside && this.props.onClickOutside(e);
-  }
-
-  // WixComponent is mainly used for the `onClickOutside` props, but is also
-  // extending React.PureComponent. The <Popover/> component can't be a
-  // PureComponent as it needs to update as frequently as possible to utilize
-  // popper's positioning mechanism.
-  shouldComponentUpdate() {
-    return true;
-  }
 
   render() {
     const { dataHook, theme, ...rest } = this.props;

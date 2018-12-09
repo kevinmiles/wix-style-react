@@ -1,6 +1,5 @@
-import eyes from 'eyes.it';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
-
+import { eyesItInstance } from '../../test/utils/eyes-it';
 import { popoverTestkitFactory } from '../../testkit/protractor';
 import {
   createStoryUrl,
@@ -15,6 +14,10 @@ import {
 } from '../../stories/Popover/storySettings';
 
 describe('Popover', () => {
+  const eyes = eyesItInstance({
+    enableSnapshotAtBrowserGet: false,
+  });
+
   const storyUrl = createStoryUrl({
     kind: storySettings.kind,
     story: storySettings.storyName,

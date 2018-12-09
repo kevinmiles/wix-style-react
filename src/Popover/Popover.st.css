@@ -36,7 +36,6 @@
   border-radius: 8px;
   box-sizing: border-box;
   box-shadow: value(shadow30);
-  word-wrap: break-word;
   -webkit-font-smoothing: antialiased;
 
   font-size: 14px;
