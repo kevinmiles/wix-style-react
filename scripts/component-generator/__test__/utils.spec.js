@@ -42,7 +42,7 @@ describe('utils', () => {
   });
 
   test('getComponentStoryPath', () => {
-    expect(utils.getComponentPath('MyComponent')).toEqual(
+    expect(utils.getComponentStoryPath('MyComponent')).toEqual(
       path.join(__dirname, '../../../stories/MyComponent'),
     );
   });

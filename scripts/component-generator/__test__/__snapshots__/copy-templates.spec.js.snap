@@ -628,7 +628,6 @@ describe('MyTestComponent', () => {
 ",
   "stories/MyTestComponent/index.story.js": "import React from 'react';
 import { storySettings } from './storySettings';
-import LiveCodeExample from '../utils/Components/LiveCodeExample';
 
 import MyTestComponent from '../../src/MyTestComponent';
 
@@ -648,6 +647,15 @@ export default {
     // Put here presets of props, for more info:
     // https://github.com/wix/wix-ui/blob/master/packages/wix-storybook-utils/docs/usage.md#using-list
   },
+
+  examples: (
+    <div style={{ maxWidth: 627 }}>
+      <MyTestComponent
+        dataHook=\\"story-my-test-component-live-example\\"
+        buttonText=\\"Press me for a surprise\\"
+        />
+    </div>
+  ),
 };
 
 ",
