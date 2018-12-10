@@ -36,7 +36,13 @@ const isComponentExists = componentName =>
 
 const getTemplatePath = (p, template) =>
   path.join(__dirname, '../templates', template, p);
+
 const getDestinationPath = p => path.join(getProjectRoot(), p);
+
+// Extracted from
+// https://github.com/wix/yoshi/blob/master/packages/yoshi-helpers/queries.js
+const isInTeamCity = () =>
+  process.env.BUILD_NUMBER || process.env.TEAMCITY_VERSION;
 
 module.exports = {
   getProjectRoot,
@@ -50,4 +56,5 @@ module.exports = {
   isComponentExists,
   getTemplatePath,
   getDestinationPath,
+  isInTeamCity,
 };

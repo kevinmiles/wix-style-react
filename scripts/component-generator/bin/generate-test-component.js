@@ -35,9 +35,11 @@ const run = async () => {
   branch. You may want to regenerate the component and push the changes to master.`,
     );
 
-    console.log(
-      `##teamcity[buildStatus text='Test component may be outdated.']`,
-    );
+    if (utils.isInTeamCity()) {
+      console.log(
+        `##teamcity[buildProblem description='Generated test component may be outdated']`,
+      );
+    }
   }
 };
 
