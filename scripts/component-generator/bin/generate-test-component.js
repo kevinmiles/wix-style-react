@@ -37,7 +37,7 @@ const run = async () => {
 
     if (utils.isInTeamCity()) {
       console.log(
-        `##teamcity[buildProblem description='Generated test component may be outdated']`,
+        `##teamcity[buildStatus text='{build.status.text}; generated test component may be outdated']`,
       );
     }
   }
