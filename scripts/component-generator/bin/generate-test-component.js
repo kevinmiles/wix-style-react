@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const chalk = require('chalk');
 const { generateComponent, utils, logger } = require('../src');
 
 const cwd = process.cwd();
@@ -24,8 +25,13 @@ const run = async () => {
   });
 
   if (!(await utils.isGitRepoClean(cwd))) {
+    logger.divider();
     logger.info(
-      `Component generation has completed but the git repository is dirty`,
+      `Component generation has completed but the git repository is dirty This may
+  indicate that the ${chalk.cyan(
+    '<GeneratedTestComponent/>',
+  )} is not updated in the current
+  branch. You may want to regenerate the component and push the changes to master.`,
     );
   }
 };
