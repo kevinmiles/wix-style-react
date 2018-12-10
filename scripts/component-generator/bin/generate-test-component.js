@@ -25,21 +25,24 @@ const run = async () => {
     },
   });
 
-  if (!(await utils.isGitRepoClean(cwd))) {
+  if (utils.isInTeamCity() && !(await utils.isGitRepoClean(cwd))) {
     logger.divider();
     logger.info(
       `Component generation has completed but the git repository is dirty This may
-  indicate that the ${chalk.cyan(
-    '<GeneratedTestComponent/>',
-  )} is not updated in the current
+  indicate that the <GeneratedTestComponent/> is not updated in the current
   branch. You may want to regenerate the component and push the changes to master.`,
     );
 
-    if (utils.isInTeamCity()) {
-      console.log(
-        `##teamcity[buildStatus text='{build.status.text}; generated test component may be outdated']`,
-      );
-    }
+    logger.divider();
+    logger.info(
+      `You can regenarte the test component by running:
+
+      $ npm run generate`,
+    );
+
+    console.log(
+      `##teamcity[buildStatus text='{build.status.text}; generated test component may be outdated']`,
+    );
   }
 };
 
