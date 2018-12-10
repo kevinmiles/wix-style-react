@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 const path = require('path');
 const { exec } = require('child_process');
 const utils = require('./utils');

@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+/* eslint-disable no-console */
 const chalk = require('chalk');
 const { generateComponent, utils, logger } = require('../src');
 
@@ -32,6 +33,10 @@ const run = async () => {
     '<GeneratedTestComponent/>',
   )} is not updated in the current
   branch. You may want to regenerate the component and push the changes to master.`,
+    );
+
+    console.log(
+      `##teamcity[buildStatus text='Test component may be outdated.']`,
     );
   }
 };
