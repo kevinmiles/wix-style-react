@@ -25,8 +25,14 @@ const pascalCaseToSnakeCase = str =>
     match => `-${match.toLowerCase()}`,
   );
 
+const getComponentPath = componentName =>
+  path.join(getProjectRoot(), 'src', componentName);
+
+const getComponentStoryPath = componentName =>
+  path.join(getProjectRoot(), 'stories', componentName);
+
 const isComponentExists = componentName =>
-  fs.existsSync(path.join(getProjectRoot(), 'src', componentName));
+  fs.existsSync(getComponentPath(componentName));
 
 const getTemplatePath = (p, template) =>
   path.join(__dirname, '../templates', template, p);
@@ -39,6 +45,8 @@ module.exports = {
   isPascalCase,
   pascalCaseToCamelCase,
   pascalCaseToSnakeCase,
+  getComponentPath,
+  getComponentStoryPath,
   isComponentExists,
   getTemplatePath,
   getDestinationPath,

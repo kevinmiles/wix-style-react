@@ -19,7 +19,7 @@ const runTransform = (transformName, file, { ComponentName }) => {
 
     execProc.stderr.on('data', data => {
       logger.error(
-        `Error while running codemod ${transformName}: ${data.toString}`,
+        `Error while running codemod ${transformName}: ${data.toString()}`,
       );
       reject(data.toString());
     });
@@ -29,6 +29,8 @@ const runTransform = (transformName, file, { ComponentName }) => {
 };
 
 module.exports = async ({ ComponentName }) => {
+  logger.info('Running codemods');
+
   // Run the stories-file transform
   await runTransform(
     'stories-file.js',
@@ -42,4 +44,6 @@ module.exports = async ({ ComponentName }) => {
     utils.getDestinationPath('src/index.js'),
     { ComponentName },
   );
+
+  logger.success('Codemods succeeded');
 };

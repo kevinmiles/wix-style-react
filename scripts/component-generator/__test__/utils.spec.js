@@ -35,6 +35,18 @@ describe('utils', () => {
     );
   });
 
+  test('getComponentPath', () => {
+    expect(utils.getComponentPath('MyComponent')).toEqual(
+      path.join(__dirname, '../../../src/MyComponent'),
+    );
+  });
+
+  test('getComponentStoryPath', () => {
+    expect(utils.getComponentPath('MyComponent')).toEqual(
+      path.join(__dirname, '../../../stories/MyComponent'),
+    );
+  });
+
   test('isComponentExists', () => {
     expect(utils.isComponentExists('EmptyState')).toEqual(true);
     expect(utils.isComponentExists('MyNewComponent')).toEqual(false);
