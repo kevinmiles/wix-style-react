@@ -24,7 +24,7 @@ describe('GeneratedTestComponent', () => {
       `Cannot find <GeneratedTestComponent/> component with dataHook of ${dataHook}`,
     );
 
-    await scrollToElement(driver.element());
+    await scrollToElement(await driver.element());
 
     return driver;
   };
