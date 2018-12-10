@@ -55,7 +55,7 @@ describe('MyNewComponent', () => {
       \`Cannot find <MyNewComponent/> component with dataHook of \${dataHook}\`,
     );
 
-    await scrollToElement(driver.element());
+    await scrollToElement(await driver.element());
 
     return driver;
   };
@@ -280,7 +280,7 @@ describe('MyNewComponent', () => {
       \`Cannot find <MyNewComponent/> component with dataHook of \${dataHook}\`,
     );
 
-    await scrollToElement(driver.element());
+    await scrollToElement(await driver.element());
 
     return driver;
   };
@@ -509,7 +509,7 @@ describe('MyTestComponent', () => {
       \`Cannot find <MyTestComponent/> component with dataHook of \${dataHook}\`,
     );
 
-    await scrollToElement(driver.element());
+    await scrollToElement(await driver.element());
 
     return driver;
   };
