@@ -38,20 +38,20 @@ describe('Popover', () => {
     return driver;
   };
 
-  beforeAll(async () => {
-    await browser.get(storyUrl);
-  });
-
-  beforeEach(async () => {
-    await autoExampleDriver.reset();
-  });
-
-  eyes.it('should render with dark theme', async () => {
-    await autoExampleDriver.setProps({ theme: 'dark' });
-    await createDriver();
-  });
-
   describe('examples', () => {
+    beforeAll(async () => {
+      await browser.get(storyUrl);
+    });
+
+    beforeEach(async () => {
+      await autoExampleDriver.reset();
+    });
+
+    eyes.it('should render with dark theme', async () => {
+      await autoExampleDriver.setProps({ theme: 'dark' });
+      await createDriver();
+    });
+
     eyes.it('AppendTo prop example', async () => {
       await createDriver('story-popover-append-to');
     });

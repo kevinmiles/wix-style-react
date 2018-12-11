@@ -94,7 +94,7 @@ const Section = ({ appendToProp, description, children }) => (
 );
 
 export default () => (
-  <div style={{ maxWidth: 1254 }} dataHook="story-popover-append-to">
+  <div style={{ maxWidth: 1254 }} data-hook="story-popover-append-to">
     <Section
       appendToProp="window"
       description="If you inspect the content, you'll see it is attached to a new `<div/>` under the body."
