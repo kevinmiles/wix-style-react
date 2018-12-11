@@ -18,6 +18,17 @@ Types of changes:
 ### Added
 
 - `<CloseButton>` - new component [#2480](https://github.com/wix/wix-style-react/pull/2480)
+- `<Tag/>`, `<MultiSelect/>` - Added RTL support [#2356](https://github.com/wix/wix-style-react/pull/2356)
+- `<Input/>`, `<InputArea/>` - Added name ( & type) attribute driver.click() callback [#2528](https://github.com/wix/wix-style-react/pull/2528)
+- `<Calendar/>` - Add range support [#2533](https://github.com/wix/wix-style-react/pull/2533)
+
+### Fixed
+
+- `<WixComponent/>` - Update dataHook on componentDidUpdate [#2542](https://github.com/wix/wix-style-react/pull/2542)
+
+### Changed
+
+- `<Breadcrumbs/>` - do not limit breadcrumb width given only one item [#2553](https://github.com/wix/wix-style-react/pull/2553)
 
 ## 5.15.1 - 2018-12-03
 

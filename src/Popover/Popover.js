@@ -66,9 +66,13 @@ class Popover extends React.Component {
     return (
       <CorePopover
         {...rest}
-        {...style('root', {
-          theme
-        }, this.props)}
+        {...style(
+          'root',
+          {
+            theme,
+          },
+          this.props,
+        )}
       />
     );
   }

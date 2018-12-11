@@ -506,3 +506,9 @@ import { closeButtonDriverFactory } from '../src/CloseButton/CloseButton.driver'
 export const closeButtonTestkitFactory = enzymeUniTestkitFactoryCreator(
   closeButtonDriverFactory,
 );
+
+import { carouselDriverFactory } from '../src/Carousel/Carousel.driver';
+
+export const carouselTestkitFactory = enzymeUniTestkitFactoryCreator(
+  carouselDriverFactory,
+);
