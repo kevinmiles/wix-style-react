@@ -5,8 +5,6 @@ import styles from './GeneratedTestComponent.scss';
 import Text from '../Text';
 import Button from '../Button';
 
-// Oops..
-
 class GeneratedTestComponent extends React.PureComponent {
   static displayName = 'GeneratedTestComponent';
 
