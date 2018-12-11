@@ -43,22 +43,18 @@
 
 .root::popover[data-placement*="right"]::arrow {
   border-right-color: value(WHITE);
-  box-shadow: -3px 3px 6px rgba(0, 0, 0, .1);
 }
 
 .root::popover[data-placement*="left"]::arrow {
   border-left-color: value(WHITE);
-  box-shadow: 3px -3px 6px rgba(0, 0, 0, .1);
 }
 
 .root::popover[data-placement*="top"]::arrow {
   border-top-color: value(WHITE);
-  box-shadow: 3px 3px 6px rgba(0, 0, 0, .1);
 }
 
 .root::popover[data-placement*="bottom"]::arrow {
   border-bottom-color: value(WHITE);
-  box-shadow: -3px -3px 6px rgba(0, 0, 0, .1);
 }
 
 /* Dark theme */
