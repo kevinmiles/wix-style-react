@@ -13,6 +13,7 @@ class Popover extends React.Component {
 
   static propTypes = {
     ...CorePopover.propTypes,
+    dataHook: PropTypes.string,
 
     /** The theme of the popover */
     theme: PropTypes.oneOf(['dark', 'light']),
@@ -61,16 +62,18 @@ class Popover extends React.Component {
     const { dataHook, theme, ...rest } = this.props;
 
     return (
-      <CorePopover
-        {...rest}
-        {...style(
-          'root',
-          {
-            theme,
-          },
-          this.props,
-        )}
-      />
+      <div data-hook={dataHook}>
+        <CorePopover
+          {...rest}
+          {...style(
+            'root',
+            {
+              theme,
+            },
+            this.props,
+          )}
+        />
+      </div>
     );
   }
 }
