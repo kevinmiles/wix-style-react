@@ -1,8 +1,7 @@
 import React from 'react';
-import { Popover as CorePopover } from 'wix-ui-core/Popover';
+import { Popover as CorePopover } from 'wix-ui-core/popover';
 import { buildChildrenObject } from 'wix-ui-core/dist/src/utils';
 import PropTypes from 'prop-types';
-import WixComponent from '../BaseComponents/WixComponent';
 
 import style from './Popover.st.css';
 
@@ -15,8 +14,6 @@ class Popover extends React.Component {
   static propTypes = {
     ...CorePopover.propTypes,
 
-    /** Callback to be called when the user perform a click outside of the component */
-    onClickOutside: PropTypes.func,
     /** The theme of the popover */
     theme: PropTypes.oneOf(['dark', 'light']),
 

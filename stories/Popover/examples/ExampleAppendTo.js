@@ -52,13 +52,20 @@ const createScrolParentExample = () => `
 const ScrollableContent = ({ children }) => (
   <div
     style={{
-      overflow: 'auto',
-      height: 120,
+      overflow: 'hidden',
+      position: 'relative',
       border: '1px solid black',
     }}
   >
-    <div style={{ padding: '25px 25px 150px' }}>
-      {children}
+    <div
+      style={{
+        overflow: 'auto',
+        height: 120,
+      }}
+    >
+      <div style={{ padding: '25px 25px 150px' }}>
+        {children}
+      </div>
     </div>
   </div>
 );
@@ -106,7 +113,7 @@ export default () => (
       description={`
 This is similar to \`window\` as it also appends the content to a new \`<div/>\` under the body, but also set its boundry to the viewport.
 
-_The Popover in the example is not shown by default_
+_The Popover in the example is not shown by default._ Try to scroll out of the Popover's viewport to see the effect.
       `}
     >
       <LiveCodeExample
