@@ -41,7 +41,11 @@ const run = async () => {
     );
 
     console.log(
-      `##teamcity[buildStatus text='{build.status.text}; generated test component may be outdated']`,
+      `##teamcity[buildProblem description='Generated test component may be outdated.']`,
+    );
+
+    console.log(
+      `##teamcity[buildStatus status='SUCCESS' text='{build.status.text}']`,
     );
   }
 };
