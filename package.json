@@ -80,6 +80,7 @@
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-react": "*",
     "babel-preset-stage-2": "*",
+    "chalk": "^2.4.1",
     "commander": "^2.19.0",
     "concurrently": "^3.4.0",
     "enzyme": "^3.3.0",
