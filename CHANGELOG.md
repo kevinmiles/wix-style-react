@@ -25,10 +25,15 @@ Types of changes:
 ### Fixed
 
 - `<WixComponent/>` - Update dataHook on componentDidUpdate [#2542](https://github.com/wix/wix-style-react/pull/2542)
+- `<Tooltip/>` - Fix testkit `isShown()` to be specific to the Tooltip instance [#2550](https://github.com/wix/wix-style-react/pull/2550)
 
 ### Changed
 
 - `<Breadcrumbs/>` - do not limit breadcrumb width given only one item [#2553](https://github.com/wix/wix-style-react/pull/2553)
+
+### Docs
+
+- `<ButtonLayout/>` - story - Add Disabled LinkButton example
 
 ## 5.15.1 - 2018-12-03
 

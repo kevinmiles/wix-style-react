@@ -25,6 +25,7 @@
   },
   "scripts": {
     "start": "./scripts/npm-start.sh",
+    "precommit": "lint-staged",
     "pretest": "npm run lint && ./scripts/ensure-dist.sh",
     "test": "npm run test:unit && npm run test:e2e",
     "test:unit": "yoshi test --jest",
@@ -92,9 +93,11 @@
     "gh-pages-auto-release": "^1.1.2",
     "github-markdown-css": "^2.4.1",
     "globby": "^8.0.1",
-    "highlight.js": "^9.8.0",
+    "highlight.js": "^9.13.1",
+    "husky": "~0.14.0",
     "identity-obj-proxy": "^3.0.0",
     "import-path": "^1.0.0",
+    "lint-staged": "^7.3.0",
     "prompts": "^1.2.1",
     "protractor": "^5.4.1",
     "protractor-browser-logs": "^1.0.351",
@@ -159,6 +162,9 @@
     "wix-ui-core": "^2.0.1",
     "wix-ui-icons-common": "^2.0.9",
     "wix-ui-test-utils": "^1.0.115"
+  },
+  "lint-staged": {
+    "*.{js,scss}": "yoshi lint"
   },
   "jest": {
     "setupFiles": [
