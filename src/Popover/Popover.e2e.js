@@ -53,7 +53,7 @@ describe('Popover', () => {
     });
 
     eyes.it('should render with dark theme', async () => {
-      await autoExampleDriver.setProps({ shown: false, theme: 'dark' });
+      await autoExampleDriver.setProps({ shown: true, theme: 'dark' });
       await createDriver();
     });
 
