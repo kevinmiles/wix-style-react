@@ -62,18 +62,17 @@ class Popover extends React.Component {
     const { dataHook, theme, ...rest } = this.props;
 
     return (
-      <div data-hook={dataHook}>
-        <CorePopover
-          {...rest}
-          {...style(
-            'root',
-            {
-              theme,
-            },
-            this.props,
-          )}
-        />
-      </div>
+      <CorePopover
+        data-hook={dataHook}
+        {...rest}
+        {...style(
+          'root',
+          {
+            theme,
+          },
+          this.props,
+        )}
+      />
     );
   }
 }
