@@ -1,9 +1,7 @@
-import { popoverDriverFactory as corePopoverDriverFactory } from 'wix-ui-core/dist/src/components/popover/Popover.protractor.driver';
+import { popoverDriverFactory } from 'wix-ui-core/dist/src/components/popover/Popover.protractor.driver';
 
-const popoverDriverFactory = component => {
+export default component => {
   return {
-    ...corePopoverDriverFactory(component),
+    ...popoverDriverFactory(component),
   };
 };
-
-export default popoverDriverFactory;

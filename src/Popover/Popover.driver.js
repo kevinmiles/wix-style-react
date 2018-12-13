@@ -1,9 +1,7 @@
-import { popoverDriverFactory as corePopoverDriverFactory } from 'wix-ui-core/drivers/vanilla';
+import { popoverDriverFactory } from 'wix-ui-core/dist/src/components/popover/popover.driver';
 
-const popoverDriverFactory = ({ element, eventTrigger }) => {
+export default ({ element, eventTrigger }) => {
   return {
-    ...corePopoverDriverFactory({ element, eventTrigger }),
+    ...popoverDriverFactory({ element, eventTrigger }),
   };
 };
-
-export default popoverDriverFactory;
