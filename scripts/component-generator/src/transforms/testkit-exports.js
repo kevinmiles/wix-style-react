@@ -38,33 +38,13 @@ module.exports = (file, api, options) => {
     importNode.source.value,
   );
 
-  // Add the DriverFactory import
-  root
-    .get()
-    .node.program.body.push(
-      j.importDeclaration(
-        [j.importSpecifier(j.identifier(`${componentName}DriverFactory`))],
-        j.literal(`../src/${ComponentName}/${ComponentName}.driver`),
-      ),
-    );
+  root.get().node.program.body.push(
+    `import { ${componentName}DriverFactory } from '../src/${ComponentName}/${ComponentName}.driver';
 
-  // Export the TestkitFactory after calling the factory creator
-  root
-    .get()
-    .node.program.body.push(
-      j.exportNamedDeclaration(
-        j.variableDeclaration('const', [
-          j.variableDeclarator(
-            j.identifier(`${componentName}TestkitFactory`),
-            j.callExpression(j.identifier(testkitFactoryMethodName), [
-              j.identifier(`${componentName}DriverFactory`),
-            ]),
-          ),
-        ]),
-        [],
-        null,
-      ),
-    );
+export const ${componentName}TestkitFactory = ${testkitFactoryMethodName}(
+  ${componentName}DriverFactory,
+);`,
+  );
 
   return root.toSource();
 };
