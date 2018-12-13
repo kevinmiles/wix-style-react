@@ -98,6 +98,7 @@
     "identity-obj-proxy": "^3.0.0",
     "import-path": "^1.0.0",
     "lint-staged": "^7.3.0",
+    "ora": "^3.0.0",
     "prompts": "^1.2.1",
     "protractor": "^5.4.1",
     "protractor-browser-logs": "^1.0.351",

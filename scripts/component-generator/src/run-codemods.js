@@ -3,7 +3,12 @@ const { exec } = require('child_process');
 const utils = require('./utils');
 const logger = require('./logger');
 
-const runTransform = (transformName, file, { ComponentName }) => {
+const runTransform = (
+  transformName,
+  description,
+  file,
+  { ComponentName, componentName },
+) => {
   return new Promise((resolve, reject) => {
     const transformPath = path.join(__dirname, 'transforms', transformName);
     const pathToExecutable = path.join(
@@ -11,41 +16,54 @@ const runTransform = (transformName, file, { ComponentName }) => {
       '../../../node_modules/.bin/jscodeshift',
     );
 
+    const spinner = logger.spinner(description);
+
     const execProc = exec(
-      `${pathToExecutable} -t ${transformPath} ${file} --ComponentName=${ComponentName}`,
+      `${pathToExecutable} \
+          ${file} \
+          -t ${transformPath} \
+          --ComponentName=${ComponentName} \
+          --componentName=${componentName}`,
     );
 
     execProc.stderr.on('data', data => {
+      spinner.error();
       logger.error(
         `Error while running codemod ${transformName}: ${data.toString()}`,
       );
+
       reject(data.toString());
     });
 
-    execProc.on('exit', resolve);
+    execProc.on('exit', () => {
+      spinner.stop();
+      logger.success(description);
+
+      resolve();
+    });
   });
 };
 
 module.exports = async ({ ComponentName }) => {
   logger.info('Running codemods');
 
-  // Run the stories-file transform
   await runTransform(
     'stories-file.js',
+    'Adding story to the stories file',
     utils.getDestinationPath('stories/index.js'),
     { ComponentName },
   );
 
-  // Add to index file
   await runTransform(
     'index-file.js',
+    'Adding component export to the index file',
     utils.getDestinationPath('src/index.js'),
     { ComponentName },
   );
 
-  // Add testkit exports
   await runTransform(
     'testkit-exports.js',
+    'Add testkit exports',
     [
       utils.getDestinationPath('testkit/index.js'),
       utils.getDestinationPath('testkit/enzyme.js'),
