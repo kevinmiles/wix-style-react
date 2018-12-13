@@ -184,6 +184,9 @@ class Notification extends WixComponent {
   }
 }
 
+const Close = props => <CloseButton skin="lightFilled" {...props} />;
+Close.displayName = 'Notification.CloseButton';
+
 Notification.propTypes = {
   show: PropTypes.bool,
   theme: PropTypes.oneOf([
@@ -204,7 +207,7 @@ Notification.propTypes = {
   children: Composite.children(
     Composite.once(TextLabel),
     Composite.optional(ActionButton),
-    Composite.optional(CloseButton),
+    Composite.optional(Close),
   ),
 };
 
@@ -214,7 +217,7 @@ Notification.defaultProps = {
   onClose: null,
 };
 
-Notification.CloseButton = CloseButton;
+Notification.CloseButton = Close;
 Notification.TextLabel = TextLabel;
 Notification.ActionButton = ActionButton;
 
