@@ -32,7 +32,7 @@ module.exports = async ({ ComponentName }) => {
   // Run the stories-file transform
   await runTransform(
     'stories-file.js',
-    utils.getDestinationPath('.storybook/stories.js'),
+    utils.getDestinationPath('stories/index.js'),
     { ComponentName },
   );
 
@@ -40,6 +40,18 @@ module.exports = async ({ ComponentName }) => {
   await runTransform(
     'index-file.js',
     utils.getDestinationPath('src/index.js'),
+    { ComponentName },
+  );
+
+  // Add testkit exports
+  await runTransform(
+    'testkit-exports.js',
+    [
+      utils.getDestinationPath('testkit/index.js'),
+      utils.getDestinationPath('testkit/enzyme.js'),
+      utils.getDestinationPath('testkit/protractor.js'),
+      utils.getDestinationPath('testkit/puppeteer.js'),
+    ].join(' '),
     { ComponentName },
   );
 
