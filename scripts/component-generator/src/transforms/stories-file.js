@@ -7,7 +7,7 @@ module.exports = (file, api, options) => {
 
   j(imports[imports.length - 1]).insertAfter(
     `// This import was added by the component generator
-import '../stories/${ComponentName}/index.story';`,
+import './${ComponentName}/index.story';`,
   );
 
   return root.toSource();

@@ -6,19 +6,9 @@ const options = {
   componentName: 'myNewComponent',
 };
 
-defineTest(
-  __dirname,
-  'src/transforms/stories-file',
-  options,
-  'stories',
-);
+defineTest(__dirname, 'src/transforms/stories-file', options, 'stories');
 
-defineTest(
-  __dirname,
-  'src/transforms/index-file',
-  options,
-  'index',
-);
+defineTest(__dirname, 'src/transforms/index-file', options, 'index');
 
 defineTest(
   __dirname,

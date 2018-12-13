@@ -5,16 +5,16 @@
  */
 
 // 1. Foundations
-import '../stories/Typography/TypographyStory.js'; // 1.2 Typography
-import '../stories/Label.story.js'; // 1.2 + Label
-import '../stories/NewIcons'; // 1.4 Icons
+import './Typography/TypographyStory.js'; // 1.2 Typography
+import './Label.story.js'; // 1.2 + Label
+import './NewIcons'; // 1.4 Icons
 
 // Components API
-import '../stories/Collapse.story';
-import '../stories/Counter/index.story';
+import './Collapse.story';
+import './Counter/index.story';
 
 // Styling
-import '../stories/Typography/TypographyClassesStory';
+import './Typography/TypographyClassesStory';
 
 // This import was added by the component generator
-import '../stories/MyNewComponent/index.story';
+import './MyNewComponent/index.story';

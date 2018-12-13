@@ -44,21 +44,21 @@ const runTransform = (
   });
 };
 
-module.exports = async ({ ComponentName }) => {
+module.exports = async ({ ComponentName, componentName }) => {
   logger.info('Running codemods');
 
   await runTransform(
     'stories-file.js',
     'Adding story to the stories file',
     utils.getDestinationPath('stories/index.js'),
-    { ComponentName },
+    { ComponentName, componentName },
   );
 
   await runTransform(
     'index-file.js',
     'Adding component export to the index file',
     utils.getDestinationPath('src/index.js'),
-    { ComponentName },
+    { ComponentName, componentName },
   );
 
   await runTransform(
@@ -70,7 +70,7 @@ module.exports = async ({ ComponentName }) => {
       utils.getDestinationPath('testkit/protractor.js'),
       utils.getDestinationPath('testkit/puppeteer.js'),
     ].join(' '),
-    { ComponentName },
+    { ComponentName, componentName },
   );
 
   logger.success('Codemods succeeded');
