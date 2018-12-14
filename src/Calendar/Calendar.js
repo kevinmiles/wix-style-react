@@ -19,7 +19,7 @@ export default class Calendar extends WixComponent {
     className: '',
     filterDate: () => true,
     shouldCloseOnSelect: true,
-    onClose: () => {},
+    onClose: (event) => {},
   };
 
   constructor(props) {
@@ -72,7 +72,7 @@ export default class Calendar extends WixComponent {
     this.setState({ month });
   };
 
-  _handleDayClick = (value, modifiers = {}) => {
+  _handleDayClick = (value, modifiers = {}, event = null) => {
     const propsValue = this.props.value || {};
     const { onChange, shouldCloseOnSelect } = this.props;
 
@@ -90,11 +90,11 @@ export default class Calendar extends WixComponent {
             : { from: value, to: anchor };
 
         onChange(newVal, modifiers);
-        shouldCloseOnSelect && this.props.onClose();
+        shouldCloseOnSelect && this.props.onClose(event);
       }
     } else {
       onChange(value, modifiers);
-      shouldCloseOnSelect && this.props.onClose();
+      shouldCloseOnSelect && this.props.onClose(event);
     }
   };
 
@@ -222,7 +222,7 @@ export default class Calendar extends WixComponent {
   _handleKeyDown = event => {
     const keyHandler = this.keyHandlers[event.keyCode];
 
-    keyHandler && keyHandler();
+    keyHandler && keyHandler(event);
   };
 
   keyHandlers = {
@@ -280,7 +280,7 @@ Calendar.propTypes = {
   /** Callback function called with a Date or a Range whenever the user selects a day in the calendar */
   onChange: PropTypes.func.isRequired,
 
-  /** Callback function called whenever user press escape or click outside of the element */
+  /** Callback function called whenever user press escape or click outside of the element or a date is selected and `shouldCloseOnSelect` is set. Receives an event as first argument */
   onClose: PropTypes.func,
 
   /** Past dates are unselectable */

@@ -109,6 +109,18 @@ describe('DatePicker', () => {
         setTimeout(() => expect(calendarDriver.isVisible()).toBe(false), 0);
       });
 
+      it('on select date with click when wrapped in <label>', () => {
+        const { inputDriver, calendarDriver } = createDriver(
+          <label>
+            <DatePicker onChange={noop} />
+          </label>,
+        );
+
+        inputDriver.trigger('click');
+        calendarDriver.clickOnNthDay();
+        expect(calendarDriver.isVisible()).toBe(false);
+      });
+
       it('on press "Escape" key', () => {
         const { inputDriver, calendarDriver } = createDriver(
           <DatePicker onChange={noop} />,

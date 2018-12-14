@@ -78,7 +78,12 @@ export default class DatePicker extends WixComponent {
     }
   };
 
-  closeCalendar = () => {
+  closeCalendar = (event = null) => {
+    // We need to prevent click events to prevent calendar from reopening if it's wrapped in <label>
+    if (event && event.type === 'click') {
+      event.preventDefault();
+    }
+
     this.setState({ isOpen: false }, () => {
       if (this.props.onClose) {
         this.props.onClose();
