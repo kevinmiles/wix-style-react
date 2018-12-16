@@ -121,6 +121,7 @@ import './Skeleton.story.js';
 import './Collapse.story';
 import './Popover/index.story';
 import './Carousel/index.story.js';
+import './Proportion/index.story.js';
 
 // Styling
 import './Typography/TypographyClassesStory';
@@ -129,6 +130,7 @@ import './Typography/TypographyClassesStory';
 import './WIP';
 import './DragAndDrop/DragAndDrop.js';
 import './Builders/BadgeSelectItemBuilder';
+import './Builders/ContactItemBuilder';
 
 // TPA
 import './TPA/Button';

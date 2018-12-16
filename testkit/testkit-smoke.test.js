@@ -64,6 +64,7 @@ const FAILING_COMPONENTS = [
   'TextField',
   'VBox', // Component has no testkit
   'Collapse',
+  'ContactItemBuilder',
 ];
 
 /**
@@ -175,6 +176,11 @@ const COMPONENTS = {
           <div>I am the content!</div>
         </Popover.Content>,
       ],
+    },
+  },
+  Proportion: {
+    props: {
+      children: <div />,
     },
   },
 };

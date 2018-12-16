@@ -72,6 +72,12 @@ export const closeButtonTestkitFactory = puppeteerUniTestkitFactoryCreator(
   closeButtonDriverFactory,
 );
 
+import { proportionDriverFactory } from '../src/Proportion/Proportion.driver';
+
+export const proportionTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  proportionDriverFactory,
+);
+
 /*
  * Component generator test component
  */

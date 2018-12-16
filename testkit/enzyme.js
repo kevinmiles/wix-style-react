@@ -469,6 +469,12 @@ export const genericModalLayoutTestkitFactory = enzymeTestkitFactoryCreator(
   genericModalLayoutDriverFactory,
 );
 
+import contactItemBuilderDriverFactory from '../src/ContactItemBuilder/ContactItemBuilder.driver';
+
+export const contactItemBuilderTestkitFactory = enzymeTestkitFactoryCreator(
+  contactItemBuilderDriverFactory,
+);
+
 // wix-ui-backoffice proxy
 
 export {
@@ -511,6 +517,12 @@ import { carouselDriverFactory } from '../src/Carousel/Carousel.driver';
 
 export const carouselTestkitFactory = enzymeUniTestkitFactoryCreator(
   carouselDriverFactory,
+);
+
+import { proportionDriverFactory } from '../src/Proportion/Proportion.driver';
+
+export const proportionTestkitFactory = enzymeUniTestkitFactoryCreator(
+  proportionDriverFactory,
 );
 
 /*
