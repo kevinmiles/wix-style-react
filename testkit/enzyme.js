@@ -51,6 +51,12 @@ export const pageHeaderTestkitFactory = enzymeTestkitFactoryCreator(
   pageHeaderDriverFactory,
 );
 
+import popoverDriverFactory from '../src/Popover/Popover.driver';
+
+export const popoverTestkitFactory = enzymeTestkitFactoryCreator(
+  popoverDriverFactory,
+);
+
 import dropdownLayoutDriverFactory from '../src/DropdownLayout/DropdownLayout.driver';
 
 export const dropdownLayoutTestkitFactory = enzymeTestkitFactoryCreator(
@@ -104,10 +110,12 @@ export const checkboxTestkitFactory = enzymeTestkitFactoryCreator(
 );
 
 import buttonDriverFactory from '../src/Backoffice/Button/Button.driver';
+import { buttonDriverFactory as buttonNextDriverFactory } from '../src/Button/Button.driver';
 
-export const buttonTestkitFactory = enzymeTestkitFactoryCreator(
-  buttonDriverFactory,
-);
+export const buttonTestkitFactory = obj =>
+  obj.wrapper && obj.wrapper.find(`[data-upgrade]`)
+    ? enzymeUniTestkitFactoryCreator(buttonNextDriverFactory)(obj)
+    : enzymeTestkitFactoryCreator(buttonDriverFactory)(obj);
 
 import textLinkDriverFactory from '../src/TextLink/TextLink.driver';
 
@@ -463,6 +471,12 @@ export const genericModalLayoutTestkitFactory = enzymeTestkitFactoryCreator(
   genericModalLayoutDriverFactory,
 );
 
+import contactItemBuilderDriverFactory from '../src/ContactItemBuilder/ContactItemBuilder.driver';
+
+export const contactItemBuilderTestkitFactory = enzymeTestkitFactoryCreator(
+  contactItemBuilderDriverFactory,
+);
+
 // wix-ui-backoffice proxy
 
 export {
@@ -499,4 +513,25 @@ import { closeButtonDriverFactory } from '../src/CloseButton/CloseButton.driver'
 
 export const closeButtonTestkitFactory = enzymeUniTestkitFactoryCreator(
   closeButtonDriverFactory,
+);
+
+import { carouselDriverFactory } from '../src/Carousel/Carousel.driver';
+
+export const carouselTestkitFactory = enzymeUniTestkitFactoryCreator(
+  carouselDriverFactory,
+);
+
+import { proportionDriverFactory } from '../src/Proportion/Proportion.driver';
+
+export const proportionTestkitFactory = enzymeUniTestkitFactoryCreator(
+  proportionDriverFactory,
+);
+
+/*
+ * Component generator test component
+ */
+import { generatedTestComponentDriverFactory } from '../src/GeneratedTestComponent/GeneratedTestComponent.driver';
+
+export const generatedTestComponentTestkitFactory = enzymeUniTestkitFactoryCreator(
+  generatedTestComponentDriverFactory,
 );

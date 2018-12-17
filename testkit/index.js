@@ -69,6 +69,12 @@ export const pageHeaderTestkitFactory = testkitFactoryCreator(
   pageHeaderDriverFactory,
 );
 
+import popoverDriverFactory from '../src/Popover/Popover.driver';
+
+export const popoverTestkitFactory = testkitFactoryCreator(
+  popoverDriverFactory,
+);
+
 import autoCompleteDriverFactory from '../src/AutoComplete/AutoComplete.driver';
 
 export const autoCompleteTestkitFactory = testkitFactoryCreator(
@@ -104,8 +110,12 @@ export const checkboxTestkitFactory = testkitFactoryCreator(
 );
 
 import buttonDriverFactory from '../src/Backoffice/Button/Button.driver';
+import { buttonDriverFactory as buttonNextDriverFactory } from '../src/Button/Button.driver';
 
-export const buttonTestkitFactory = testkitFactoryCreator(buttonDriverFactory);
+export const buttonTestkitFactory = obj =>
+  obj.wrapper && obj.wrapper.querySelector(`[data-upgrade]`)
+    ? uniTestkitFactoryCreator(buttonNextDriverFactory)(obj)
+    : testkitFactoryCreator(buttonDriverFactory)(obj);
 
 import textLinkDriverFactory from '../src/TextLink/TextLink.driver';
 
@@ -439,6 +449,12 @@ export const genericModalLayoutTestkitFactory = testkitFactoryCreator(
   genericModalLayoutDriverFactory,
 );
 
+import contactItemBuilderDriverFactory from '../src/ContactItemBuilder/ContactItemBuilder.driver';
+
+export const contactItemBuilderTestkitFactory = testkitFactoryCreator(
+  contactItemBuilderDriverFactory,
+);
+
 // wix-ui-backoffice proxy
 
 export {
@@ -475,4 +491,25 @@ import { closeButtonDriverFactory } from '../src/CloseButton/CloseButton.driver'
 
 export const closeButtonTestkitFactory = uniTestkitFactoryCreator(
   closeButtonDriverFactory,
+);
+
+import { carouselDriverFactory } from '../src/Carousel/Carousel.driver';
+
+export const carouselTestkitFactory = uniTestkitFactoryCreator(
+  carouselDriverFactory,
+);
+
+import { proportionDriverFactory } from '../src/Proportion/Proportion.driver';
+
+export const proportionTestkitFactory = uniTestkitFactoryCreator(
+  proportionDriverFactory,
+);
+
+/*
+ * Component generator test component
+ */
+import { generatedTestComponentDriverFactory } from '../src/GeneratedTestComponent/GeneratedTestComponent.driver';
+
+export const generatedTestComponentTestkitFactory = uniTestkitFactoryCreator(
+  generatedTestComponentDriverFactory,
 );

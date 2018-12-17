@@ -35,10 +35,12 @@ export const inputAreaTestkitFactory = protractorTestkitFactoryCreator(
 );
 
 import buttonDriverFactory from '../src/Backoffice/Button/Button.protractor.driver';
+import { buttonDriverFactory as buttonNextDriverFactory } from '../src/Button/Button.driver';
 
-export const buttonTestkitFactory = protractorTestkitFactoryCreator(
-  buttonDriverFactory,
-);
+export const buttonTestkitFactory = obj =>
+  obj.wrapper && obj.wrapper.$(`[data-upgrade]`)
+    ? protractorUniTestkitFactoryCreator(buttonNextDriverFactory)(obj)
+    : protractorTestkitFactoryCreator(buttonDriverFactory)(obj);
 
 import tpaButtonDriverFactory from '../src/TPA/Button/Button.protractor.driver';
 
@@ -62,6 +64,12 @@ import pageHeaderDriverFactory from '../src/PageHeader/PageHeader.protractor.dri
 
 export const pageHeaderTestkitFactory = protractorTestkitFactoryCreator(
   pageHeaderDriverFactory,
+);
+
+import popoverDriverFactory from '../src/Popover/Popover.protractor.driver';
+
+export const popoverTestkitFactory = protractorTestkitFactoryCreator(
+  popoverDriverFactory,
 );
 
 import dataTableDriverFactory from '../src/DataTable/DataTable.protractor.driver';
@@ -340,6 +348,18 @@ export const genericModalLayoutTestkitFactory = protractorTestkitFactoryCreator(
   genericModalLayoutDriverFactory,
 );
 
+import carouselDriverFactory from '../src/Carousel/Carousel.protractor.driver';
+
+export const carouselTestkitFactory = protractorTestkitFactoryCreator(
+  carouselDriverFactory,
+);
+
+import { proportionDriverFactory } from '../src/Proportion/Proportion.driver';
+
+export const proportionTestkitFactory = protractorUniTestkitFactoryCreator(
+  proportionDriverFactory,
+);
+
 // wix-ui-backoffice proxy
 
 export {
@@ -376,4 +396,13 @@ import { closeButtonDriverFactory } from '../src/CloseButton/CloseButton.driver'
 
 export const closeButtonTestkitFactory = protractorUniTestkitFactoryCreator(
   closeButtonDriverFactory,
+);
+
+/*
+ * Component generator test component
+ */
+import { generatedTestComponentDriverFactory } from '../src/GeneratedTestComponent/GeneratedTestComponent.driver';
+
+export const generatedTestComponentTestkitFactory = protractorUniTestkitFactoryCreator(
+  generatedTestComponentDriverFactory,
 );

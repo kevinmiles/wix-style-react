@@ -1,4 +1,4 @@
-import eyes from 'eyes.it';
+import { eyesItInstance } from '../../test/utils/eyes-it';
 import {
   calendarTestkitFactory,
   waitForVisibilityOf,
@@ -7,7 +7,9 @@ import { createStoryUrl } from '../../test/utils/storybook-helpers';
 import { TESTS_PREFIX } from '../../stories/storiesHierarchy';
 
 describe('Calendar', () => {
-  const storyUrl = ({ selectedDays, numOfMonths }) => {
+  const eyes = eyesItInstance();
+
+  const storyUrl = ({ selectedDays , numOfMonths }) => {
     const baseUrl = createStoryUrl({
       kind: `${TESTS_PREFIX}/3. Inputs/3.13 Calendar`,
       story: '1. selectedDays',
@@ -24,8 +26,7 @@ describe('Calendar', () => {
     async () => {
       await browser.get(storyUrl({ selectedDays: new Date('2017/05/01') }));
       await waitForVisibilityOf(driver.getElement(), 'Cannot find Calendar');
-    },
-    { enableSnapshotAtBrowserGet: false },
+    }
   );
 
   eyes.it(
@@ -40,8 +41,7 @@ describe('Calendar', () => {
         }),
       );
       await waitForVisibilityOf(driver.getElement(), 'Cannot find Calendar');
-    },
-    { enableSnapshotAtBrowserGet: false },
+    }
   );
 
   eyes.it(
@@ -57,8 +57,7 @@ describe('Calendar', () => {
         }),
       );
       await waitForVisibilityOf(driver.getElement(), 'Cannot find Calendar');
-    },
-    { enableSnapshotAtBrowserGet: false },
+    }
   );
 
   eyes.it(
@@ -75,8 +74,7 @@ describe('Calendar', () => {
       await waitForVisibilityOf(driver.getElement(), 'Cannot find Calendar');
       await driver.nextMonth(); // May
       expect(await driver.getMonthCaption()).toBe('May');
-    },
-    { enableSnapshotAtBrowserGet: false },
+    }
   );
 
   it('should navigate to previous month', async () => {
@@ -101,8 +99,7 @@ describe('Calendar', () => {
         }),
       );
       await waitForVisibilityOf(driver.getElement(), 'Cannot find Calendar');
-    },
-    { enableSnapshotAtBrowserGet: false },
+    }
   );
 
   eyes.it(
@@ -116,8 +113,7 @@ describe('Calendar', () => {
         }),
       );
       await waitForVisibilityOf(driver.getElement(), 'Cannot find Calendar');
-    },
-    { enableSnapshotAtBrowserGet: false },
+    }
   );
 
   eyes.it(
@@ -132,7 +128,6 @@ describe('Calendar', () => {
         }),
       );
       await waitForVisibilityOf(driver.getElement(), 'Cannot find Calendar');
-    },
-    { enableSnapshotAtBrowserGet: false },
+    }
   );
 });

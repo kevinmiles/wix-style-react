@@ -12,7 +12,9 @@ const dropdownLayoutDriverFactory = ({ element, wrapper, component }) => {
   const optionsLength = () => options.childNodes.length;
   const doIfOptionExists = (position, onSuccess) => {
     if (optionsLength() <= position) {
-      throw `index out of bounds, try to get option ${position} while only ${optionsLength()} options exists`;
+      throw new Error(
+        `index out of bounds, try to get option ${position} while only ${optionsLength()} options exists`,
+      );
     }
     return onSuccess();
   };
@@ -87,7 +89,7 @@ const dropdownLayoutDriverFactory = ({ element, wrapper, component }) => {
       ),
     clickAtOptionWithValue: value => {
       const option = values(options.childNodes).find(
-        option => option.innerHTML === value,
+        _option => _option.innerHTML === value,
       );
       option && ReactTestUtils.Simulate.mouseDown(option);
     },
@@ -116,7 +118,7 @@ const dropdownLayoutDriverFactory = ({ element, wrapper, component }) => {
     optionByHook: hook => {
       const option = options.querySelector(`[data-hook=${hook}]`);
       if (!option) {
-        throw `an option with data-hook ${hook} was not found`;
+        throw new Error(`an option with data-hook ${hook} was not found`);
       }
       return {
         element: () => option,

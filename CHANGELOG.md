@@ -12,8 +12,26 @@ Types of changes:
 1. **Security** in case of vulnerabilities.
 1. **Breaking** for breaking changes
 1. **Docs** for documentation changes
+1. **Lab** components and features that are still in a work in progress
 
-## Next
+## 5.17.0
+
+### Added
+- `<Proportion/>` - create a new aspect ratio component [#2565](https://github.com/wix/wix-style-react/pull/2565)
+- Add a new component generator [#2552](https://github.com/wix/wix-style-react/pull/2552) [#2593](https://github.com/wix/wix-style-react/pull/2593)
+
+### Fixed
+- `<Notification.CloseButton/>` - fix styling [#2578](https://github.com/wix/wix-style-react/pull/2578)
+- `<Input/>` - fix testkit driver throwing error when element is null [#2602](https://github.com/wix/wix-style-react/pull/2602)
+
+### Changed
+- `<BadgeSelect/>` - refactor internally to use `<Popover/>` [#2595](https://github.com/wix/wix-style-react/pull/2595)
+
+### Lab
+- `<ContactItemBuilder/>` - create new component builder [#2556](https://github.com/wix/wix-style-react/pull/2556)
+- `<Carousel/>` - add aspect ratio, align navigation buttons and minor refactors [#2592](https://github.com/wix/wix-style-react/pull/2592)
+
+## 5.16.0 - 2018-12-12
 
 ### Added
 
@@ -21,14 +39,26 @@ Types of changes:
 - `<Tag/>`, `<MultiSelect/>` - Added RTL support [#2356](https://github.com/wix/wix-style-react/pull/2356)
 - `<Input/>`, `<InputArea/>` - Added name ( & type) attribute driver.click() callback [#2528](https://github.com/wix/wix-style-react/pull/2528)
 - `<Calendar/>` - Add range support [#2533](https://github.com/wix/wix-style-react/pull/2533)
+- `<Popover/>` - add a new component [#2509](https://github.com/wix/wix-style-react/pull/2509)
 
 ### Fixed
 
 - `<WixComponent/>` - Update dataHook on componentDidUpdate [#2542](https://github.com/wix/wix-style-react/pull/2542)
+- `<Tooltip/>` - Fix testkit `isShown()` to be specific to the Tooltip instance [#2550](https://github.com/wix/wix-style-react/pull/2550)
 
 ### Changed
 
 - `<Breadcrumbs/>` - do not limit breadcrumb width given only one item [#2553](https://github.com/wix/wix-style-react/pull/2553)
+
+### Docs
+
+- `<ButtonLayout/>` - story - Add Disabled LinkButton example
+- `<PageHeader/>` add better docs for actionBar [#2558](https://github.com/wix/wix-style-react/pull/2558)
+- `<Tooltip/>`, `<Modal/>` - add a testkit readme and explanation how to test [#2534](https://github.com/wix/wix-style-react/pull/2534)
+
+### Lab
+
+- `<Carousel/>` - initial creation of component (WIP) [#2536](https://github.com/wix/wix-style-react/pull/2536)
 
 ## 5.15.1 - 2018-12-03
 
