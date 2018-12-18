@@ -107,3 +107,4 @@ export { default as IconButton } from './IconButton';
 export { default as CloseButton } from './CloseButton';
 export { default as Carousel } from './Carousel';
 export { default as Proportion } from './Proportion';
+export { default as DropdownPopover } from './DropdownPopover';

@@ -509,3 +509,9 @@ import { generatedTestComponentDriverFactory } from '../src/GeneratedTestCompone
 export const generatedTestComponentTestkitFactory = uniTestkitFactoryCreator(
   generatedTestComponentDriverFactory,
 );
+
+import { dropdownPopoverDriverFactory } from '../src/DropdownPopover/DropdownPopover.driver';
+
+export const dropdownPopoverTestkitFactory = uniTestkitFactoryCreator(
+  dropdownPopoverDriverFactory,
+);

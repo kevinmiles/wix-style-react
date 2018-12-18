@@ -1,0 +1,15 @@
+:import {
+  -st-from: "../Popover/Popover.st.css";
+  -st-named: Popover;
+}
+
+.root {
+  -st-extends: Popover;
+}
+
+.root::popoverContent {
+  overflow: hidden;
+
+  min-width: 192px;
+  max-width: 300px;
+}
