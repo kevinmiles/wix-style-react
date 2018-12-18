@@ -1,119 +1,61 @@
 import React from 'react';
 import { storySettings } from './storySettings';
+import { placements } from '../Popover/storySettings';
+
+import LiveCodeExample from '../utils/Components/LiveCodeExample';
+import { Layout, Cell } from '../../src/Layout';
 
 import DropdownPopover from '../../src/DropdownPopover';
 import Button from '../../src/Button';
-import Input from '../../src/Input';
 
-class ButtonWithOptionsSemiControlled extends React.Component {
-  _handleOnSelect = selectedOption => {
-    // eslint-disable-next-line no-console
-    console.log('Select option:', selectedOption);
-  };
+import ExampleUncontrolledMouse from '!raw-loader!./examples/ExampleUncontrolledMouse';
+import ExampleUncontrolledClick from '!raw-loader!./examples/ExampleUncontrolledClick';
+import ExampleUncontrolledIcon from '!raw-loader!./examples/ExampleUncontrolledIcon';
+import ExampleControlledInput from '!raw-loader!./examples/ExampleControlledInput';
 
-  render() {
-    return (
-      <DropdownPopover
-        options={[
-          { id: 1, value: 'First option' },
-          { id: 2, value: 'Second option' },
-          { id: 3, value: 'Third option' },
-          { id: 4, value: 'Fourth option' },
-        ]}
-        showArrow
-        onSelect={this._handleOnSelect}
-        initialSelectedId={2}
-      >
-        {({ open, close, selectedOption = {} }) => {
-          return (
-            <Button onMouseEnter={open} onMouseLeave={close}>
-              {selectedOption.value || 'Click me'}
-            </Button>
-          );
-        }}
-      </DropdownPopover>
-    );
-  }
-}
+const options = [
+  {
+    label: '4 options',
+    value: [
+      { id: 0, value: 'First option' },
+      { id: 1, value: 'Second option' },
+      { id: 2, value: 'Third option' },
+      { id: 3, value: 'Fourth option' },
+    ],
+  },
+  {
+    label: '10 options',
+    value: Array(10)
+      .fill()
+      .map((v, i) => ({ id: i, value: `Option ${i}` })),
+  },
+];
 
-class ButtonWithOptionsControlled extends React.Component {
-  state = {
-    open: false,
-    selectedId: -1,
-    value: '',
-  };
+const children = [
+  {
+    label: 'Regular React node',
+    value: <Button>I am a plain Button!</Button>,
+  },
+  {
+    label: 'Render prop on click',
+    value: ({ toggle, selectedOption = {} }) => (
+      <Button onClick={toggle}>{selectedOption.value || 'Click me'}</Button>
+    ),
+  },
+  {
+    label: 'Render prop on hover',
+    value: ({ open, close, selectedOption = {} }) => (
+      <Button onMouseEnter={open} onMouseLeave={close}>
+        {selectedOption.value || 'Hover me'}
+      </Button>
+    ),
+  },
+];
 
-  _open = () => {
-    this.setState({ open: true });
-  };
-
-  _close = () => {
-    this.setState({ open: false });
-  };
-
-  _toggle = () => {
-    this.setState(({ open }) => ({
-      open: !open,
-    }));
-  };
-
-  _onSelect = selectedOption => {
-    // eslint-disable-next-line no-console
-    console.log('Select option:', selectedOption);
-
-    this.setState({
-      selectedId: selectedOption.id,
-      open: false,
-      value: selectedOption.value,
-    });
-  };
-
-  _onChange = e => {
-    const { value } = e.target;
-
-    this.setState({ value: e.target.value });
-
-    if (value.trim()) {
-      this._open();
-    }
-  };
-
-  _onKeyDown = (e, delegateKeyDown) => {
-    this._open();
-    delegateKeyDown(e);
-  };
-
-  render() {
-    const { open, selectedId, value } = this.state;
-
-    return (
-      <DropdownPopover
-        open={open}
-        onClickOutside={this._close}
-        options={[
-          { id: 1, value: 'First option' },
-          { id: 2, value: 'Second option' },
-          { id: 3, value: 'Third option' },
-          { id: 4, value: 'Fourth option' },
-        ]}
-        selectedId={selectedId}
-        onSelect={this._onSelect}
-      >
-        {({ delegateKeyDown }) => {
-          return (
-            <Input
-              menuArrow
-              value={value}
-              onChange={this._onChange}
-              onInputClicked={this._open}
-              onKeyDown={e => this._onKeyDown(e, delegateKeyDown)}
-            />
-          );
-        }}
-      </DropdownPopover>
-    );
-  }
-}
+const openProps = [
+  { label: 'false', value: false },
+  { label: 'true', value: true },
+];
 
 export default {
   category: storySettings.kind,
@@ -125,23 +67,68 @@ export default {
   componentProps: {
     dataHook: storySettings.dataHook,
 
-    children: <div>test</div>,
+    children: children[1].value,
+    options: options[0].value,
+    open: undefined,
+    showArrow: false,
+    placement: 'bottom',
   },
 
   exampleProps: {
-    // Put here presets of props, for more info:
-    // https://github.com/wix/wix-ui/blob/master/packages/wix-storybook-utils/docs/usage.md#using-list
+    children,
+    options,
+    open: openProps,
+    placement: placements,
+
+    onSelect: selectedOption =>
+      `Triggered with: ${JSON.stringify(selectedOption)}`,
+    onClickOutside: () => 'Triggered!',
   },
 
   examples: (
-    <div style={{ maxWidth: 627, textAlign: 'center', background: '#eee' }}>
-      <ButtonWithOptionsSemiControlled />
+    <div
+      style={{
+        maxWidth: 1254,
+        padding: 10,
+      }}
+    >
+      <Layout>
+        <Cell span={6}>
+          <LiveCodeExample
+            compact
+            autoRender={false}
+            title="Uncontrolled example with mouse events"
+            initialCode={ExampleUncontrolledMouse}
+          />
+        </Cell>
 
-      <br />
-      <br />
-      <br />
+        <Cell span={6}>
+          <LiveCodeExample
+            compact
+            autoRender={false}
+            title="Uncontrolled example with click events"
+            initialCode={ExampleUncontrolledClick}
+          />
+        </Cell>
 
-      <ButtonWithOptionsControlled />
+        <Cell span={6}>
+          <LiveCodeExample
+            compact
+            autoRender={false}
+            title="Uncontrolled example with an icon"
+            initialCode={ExampleUncontrolledIcon}
+          />
+        </Cell>
+
+        <Cell span={6}>
+          <LiveCodeExample
+            compact
+            autoRender={false}
+            title="Controlled example with an input"
+            initialCode={ExampleControlledInput}
+          />
+        </Cell>
+      </Layout>
     </div>
   ),
 };

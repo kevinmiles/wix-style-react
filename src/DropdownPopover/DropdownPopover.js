@@ -140,7 +140,7 @@ class DropdownPopover extends React.PureComponent {
   };
 
   _getSelectedOption = selectedId => {
-    return this.props.options.find(({ id }) => id === selectedId) || null;
+    return this.props.options.find(({ id }) => id === selectedId);
   };
 
   /**
