@@ -5,11 +5,18 @@
 
 .root {
   -st-extends: Popover;
+  -st-states: withWidth;
 }
 
 .root::popoverContent {
   overflow: hidden;
 
   min-width: 192px;
-  max-width: 300px;
+  width: 100%;
+}
+
+/* Reset width when the user define its own */
+.root:withWidth::popoverContent {
+  min-width: inherit;
+  width: inherit;
 }

@@ -22,9 +22,10 @@ class DropdownPopover extends React.PureComponent {
     /** Callback function to be called when selecting an option. It's signature is `onSelect(selectedOption)` */
     onSelect: PropTypes.func,
 
-    options: DropdownLayout.propTypes.options,
-    selectedId: DropdownLayout.propTypes.selectedId,
-    initialSelectedId: DropdownLayout.propTypes.selectedId,
+    /** The minimun width applied to the list */
+    minWidth: PropTypes.number,
+    /** The maximun width applied to the list */
+    maxWidth: PropTypes.number,
 
     /**
      * The target component to be rendered. If a regular node is paseed, it'll be rendered as-is.
@@ -41,6 +42,10 @@ class DropdownPopover extends React.PureComponent {
      * Refer to the component documentation for more information.
      */
     children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+
+    options: DropdownLayout.propTypes.options,
+    selectedId: DropdownLayout.propTypes.selectedId,
+    initialSelectedId: DropdownLayout.propTypes.selectedId,
   };
 
   static defaultProps = {
@@ -59,17 +64,17 @@ class DropdownPopover extends React.PureComponent {
   /**
    * Return `true` if the `open` prop is being controlled
    */
-  _isControllingOpen = () => {
-    return typeof this.props.open !== 'undefined';
+  _isControllingOpen = (props = this.props) => {
+    return typeof props.open !== 'undefined';
   };
 
   /**
    * Return `true` if the selection behaviour is being controlled
    */
-  _isControllingSelection = () => {
+  _isControllingSelection = (props = this.props) => {
     return (
-      typeof this.props.selectedId !== 'undefined' &&
-      typeof this.props.onSelect !== 'undefined'
+      typeof props.selectedId !== 'undefined' &&
+      typeof props.onSelect !== 'undefined'
     );
   };
 
@@ -184,12 +189,15 @@ class DropdownPopover extends React.PureComponent {
 
   componentWillReceiveProps(nextProps) {
     // Keep internal state updated if needed
-    if (this._isControllingOpen() && this.props.open !== nextProps.open) {
-      this.setState({ open: nextProps.open });
+    if (
+      this._isControllingOpen(nextProps) &&
+      this.props.open !== nextProps.open
+    ) {
+      this.setState({ open: nextProps.open || false });
     }
 
     if (
-      this._isControllingSelection() &&
+      this._isControllingSelection(nextProps) &&
       this.props.selectedId !== nextProps.selectedId
     ) {
       this.setState({ selectedId: nextProps.selectedId });
@@ -218,7 +226,15 @@ class DropdownPopover extends React.PureComponent {
   }
 
   render() {
-    const { dataHook, placement, showArrow, options } = this.props;
+    const {
+      dataHook,
+      placement,
+      showArrow,
+      options,
+      minWidth,
+      maxWidth,
+    } = this.props;
+
     const { open, selectedId } = this.state;
 
     return (
@@ -230,21 +246,32 @@ class DropdownPopover extends React.PureComponent {
         onKeyDown={this._handleKeyDown}
         onMouseLeave={this._handlePopoverMouseLeave}
         onClickOutside={this._handleClickOutside}
-        {...style('root', {}, this.props)}
+        {...style(
+          'root',
+          { withWidth: Boolean(minWidth || maxWidth) },
+          this.props,
+        )}
       >
         <Popover.Element>{this.renderChildren()}</Popover.Element>
 
         <Popover.Content>
-          <DropdownLayout
-            dataHook="dropdown-popover-dropdownlayout"
-            ref={r => (this._dropdownLayoutRef = r)}
-            selectedId={selectedId}
-            options={options}
-            onSelect={this._handleSelect}
-            onClose={this._handleClose}
-            inContainer
-            visible
-          />
+          <div
+            style={{
+              maxWidth,
+              minWidth,
+            }}
+          >
+            <DropdownLayout
+              dataHook="dropdown-popover-dropdownlayout"
+              ref={r => (this._dropdownLayoutRef = r)}
+              selectedId={selectedId}
+              options={options}
+              onSelect={this._handleSelect}
+              onClose={this._handleClose}
+              inContainer
+              visible
+            />
+          </div>
         </Popover.Content>
       </Popover>
     );
