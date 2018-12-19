@@ -126,13 +126,39 @@ describe('DropdownPopover', () => {
     const onClickOutsideFn = jest.fn();
 
     const driver = createDriver(
-      <DropdownPopover {...defaultProps} open onClickOutside={onClickOutsideFn}>
+      <DropdownPopover {...defaultProps} onClickOutside={onClickOutsideFn}>
         <div>Hello</div>
       </DropdownPopover>,
     );
 
     await driver.clickOutside();
     expect(onClickOutsideFn).toHaveBeenCalledTimes(1);
+  });
+
+  it('should call onMouseEnter', async () => {
+    const onMouseEnterFn = jest.fn();
+
+    const driver = createDriver(
+      <DropdownPopover {...defaultProps} onMouseEnter={onMouseEnterFn}>
+        <div>Hello</div>
+      </DropdownPopover>,
+    );
+
+    await driver.mouseEnter();
+    expect(onMouseEnterFn).toHaveBeenCalledTimes(1);
+  });
+
+  it('should call onMouseLeave', async () => {
+    const onMouseLeaveFn = jest.fn();
+
+    const driver = createDriver(
+      <DropdownPopover {...defaultProps} onMouseLeave={onMouseLeaveFn}>
+        <div>Hello</div>
+      </DropdownPopover>,
+    );
+
+    await driver.mouseLeave();
+    expect(onMouseLeaveFn).toHaveBeenCalledTimes(1);
   });
 
   describe('uncontrolled open behaviour', () => {

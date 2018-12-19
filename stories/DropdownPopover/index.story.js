@@ -8,10 +8,10 @@ import { Layout, Cell } from '../../src/Layout';
 import DropdownPopover from '../../src/DropdownPopover';
 import Button from '../../src/Button';
 
-import ExampleUncontrolledMouse from '!raw-loader!./examples/ExampleUncontrolledMouse';
 import ExampleUncontrolledClick from '!raw-loader!./examples/ExampleUncontrolledClick';
 import ExampleUncontrolledIcon from '!raw-loader!./examples/ExampleUncontrolledIcon';
 import ExampleControlledInput from '!raw-loader!./examples/ExampleControlledInput';
+import ExampleControlledMouse from '!raw-loader!./examples/ExampleControlledMouse';
 
 const options = [
   {
@@ -96,16 +96,6 @@ export default {
         <Cell span={6}>
           <LiveCodeExample
             compact
-            autoRender={false}
-            title="Uncontrolled example with mouse events"
-            initialCode={ExampleUncontrolledMouse}
-          />
-        </Cell>
-
-        <Cell span={6}>
-          <LiveCodeExample
-            compact
-            autoRender={false}
             title="Uncontrolled example with click events"
             initialCode={ExampleUncontrolledClick}
           />
@@ -114,9 +104,17 @@ export default {
         <Cell span={6}>
           <LiveCodeExample
             compact
-            autoRender={false}
             title="Uncontrolled example with an icon"
             initialCode={ExampleUncontrolledIcon}
+          />
+        </Cell>
+
+        <Cell span={6}>
+          <LiveCodeExample
+            compact
+            autoRender={false}
+            title="Controlled example with mouse events"
+            initialCode={ExampleControlledMouse}
           />
         </Cell>
 

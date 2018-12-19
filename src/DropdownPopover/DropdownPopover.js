@@ -19,6 +19,10 @@ class DropdownPopover extends React.PureComponent {
     showArrow: PropTypes.bool,
     /** Callback function to be called on outside click */
     onClickOutside: PropTypes.func,
+    /** Callback function to be called on mouseEnter on the entire component */
+    onMouseEnter: PropTypes.func,
+    /** Callback function to be called on mouseEnter onMouseLeave the entire component */
+    onMouseLeave: PropTypes.func,
     /** Callback function to be called when selecting an option. It's signature is `onSelect(selectedOption)` */
     onSelect: PropTypes.func,
 
@@ -111,7 +115,15 @@ class DropdownPopover extends React.PureComponent {
     onClickOutside && onClickOutside();
   };
 
+  _handlePopoverMouseEnter = () => {
+    const { onMouseEnter } = this.props;
+
+    onMouseEnter && onMouseEnter();
+  };
+
   _handlePopoverMouseLeave = () => {
+    const { onMouseLeave } = this.props;
+
     if (this._shouldCloseOnMouseLeave) {
       this._shouldCloseOnMouseLeave = false;
 
@@ -119,6 +131,8 @@ class DropdownPopover extends React.PureComponent {
         open: false,
       });
     }
+
+    onMouseLeave && onMouseLeave();
   };
 
   _handleSelect = selectedOption => {
@@ -204,7 +218,7 @@ class DropdownPopover extends React.PureComponent {
     }
   }
 
-  renderChildren() {
+  _renderChildren() {
     const { children } = this.props;
     const { selectedId } = this.state;
 
@@ -244,6 +258,7 @@ class DropdownPopover extends React.PureComponent {
         placement={placement}
         showArrow={showArrow}
         onKeyDown={this._handleKeyDown}
+        onMouseEnter={this._handlePopoverMouseEnter}
         onMouseLeave={this._handlePopoverMouseLeave}
         onClickOutside={this._handleClickOutside}
         {...style(
@@ -252,7 +267,7 @@ class DropdownPopover extends React.PureComponent {
           this.props,
         )}
       >
-        <Popover.Element>{this.renderChildren()}</Popover.Element>
+        <Popover.Element>{this._renderChildren()}</Popover.Element>
 
         <Popover.Content>
           <div
