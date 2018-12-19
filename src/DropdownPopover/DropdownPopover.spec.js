@@ -97,7 +97,7 @@ describe('DropdownPopover', () => {
           expect(typeof toggle).toBe('function');
           expect(typeof delegateKeyDown).toBe('function');
 
-          expect(selectedOption).toEqual(null);
+          expect(selectedOption).toEqual(undefined);
 
           return <div>Hello again</div>;
         }}
@@ -228,7 +228,7 @@ describe('DropdownPopover', () => {
         expect(await driver.isDropdownShown()).toBeTruthy();
 
         // Dropdown should be hidden when a mouseLeave happens on the DropdownLayout
-        await driver.mouseLeaveDropdown();
+        await driver.mouseLeave();
         expect(await driver.isDropdownShown()).toBeFalsy();
       });
     });
