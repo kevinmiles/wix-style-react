@@ -14,20 +14,48 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
-## 5.17.0
+## 5.18.1 - 2018-12-18
+
+### Fixed
+- re-add some mising enzyme testkits [#2618](https://github.com/wix/wix-style-react/pull/2618)
 
 ### Added
+
+- `<PageHeader/>` - add support for clicking the back button in the driver [#2581](https://github.com/wix/wix-style-react/pull/2581)
+
+## 5.18.0 - 2018-12-18
+
+### Added
+
+- `<Button />` - major refactor. New API. Does not break current Button. Read migration guide: (https://github.com/wix/wix-style-react/blob/master/src/Button/MIGRATION-API.md). [#2507](https://github.com/wix/wix-style-react/pull/2507)
+
+- `<MessageBox />` - Added RTL support [#2608](https://github.com/wix/wix-style-react/pull/2608)
+- `<Popover/>` - improve arrow styles [#2594](https://github.com/wix/wix-style-react/pull/2594)
+
+### Fixed
+
+- `<Tooltip/>` - Add back `tooltip-content` data-hook [#2609](https://github.com/wix/wix-style-react/pull/2609)
+- `<Search/>` - Allow regexp special chars as search term [#2606](https://github.com/wix/wix-style-react/pull/2606)
+- `<Button/>`,`<MessageBoxMarketerialLayout/>` - Fix deprecationLog [#2598](https://github.com/wix/wix-style-react/pull/2598)
+
+## 5.17.0 - 2018-12-17
+
+### Added
+
 - `<Proportion/>` - create a new aspect ratio component [#2565](https://github.com/wix/wix-style-react/pull/2565)
 - Add a new component generator [#2552](https://github.com/wix/wix-style-react/pull/2552) [#2593](https://github.com/wix/wix-style-react/pull/2593)
 
 ### Fixed
+
 - `<Notification.CloseButton/>` - fix styling [#2578](https://github.com/wix/wix-style-react/pull/2578)
 - `<Input/>` - fix testkit driver throwing error when element is null [#2602](https://github.com/wix/wix-style-react/pull/2602)
 
 ### Changed
+
 - `<BadgeSelect/>` - refactor internally to use `<Popover/>` [#2595](https://github.com/wix/wix-style-react/pull/2595)
 
 ### Lab
+
 - `<ContactItemBuilder/>` - create new component builder [#2556](https://github.com/wix/wix-style-react/pull/2556)
 - `<Carousel/>` - add aspect ratio, align navigation buttons and minor refactors [#2592](https://github.com/wix/wix-style-react/pull/2592)
 

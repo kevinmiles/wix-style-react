@@ -11,10 +11,12 @@ export const inputTestkitFactory = puppeteerTestkitFactoryCreator(
 );
 
 import buttonDriverFactory from '../src/Backoffice/Button/Button.puppeteer.driver';
+import { buttonDriverFactory as buttonNextDriverFactory } from '../src/Button/Button.driver';
 
-export const buttonTestkitFactory = puppeteerTestkitFactoryCreator(
-  buttonDriverFactory,
-);
+export const buttonTestkitFactory = obj =>
+  obj.wrapper && obj.wrapper.$(`[data-upgrade]`)
+    ? puppeteerUniTestkitFactoryCreator(buttonNextDriverFactory)(obj)
+    : puppeteerTestkitFactoryCreator(buttonDriverFactory)(obj);
 
 import formFieldDriverFactory from '../src/FormField/FormField.puppeteer.driver';
 

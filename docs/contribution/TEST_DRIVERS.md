@@ -12,6 +12,9 @@ The library still contain a lot of technology specific drivers, mainly for the f
   * `protractor` for browser interaction.
 We will slowly migrate to use only unidriver, but in the meanwhile both still exist.
 
+### Composing unidriver with legacy drivers
+If your component's `unidriver` is composing other components that don’t use unidriver, please make sure to create a new `ConsumedComponent.uni.driver.js` next to the consumed component. You can start by implementing only the required functions and not the entire driver.
+
 ## Public and Private drivers
 1. The **Public** drivers (`component.driver.js`) are the ones that exposed to the consumers of the components. They should be simple abstractions over common actions (for example, selecting the third element in the dropdown).
 2. The **Private** drivers (`component.driver.private.js`) are used for actions on a component that should not be exposed to the user. For example, asserting a class name existance on some component.
@@ -28,8 +31,10 @@ We will slowly migrate to use only unidriver, but in the meanwhile both still ex
 1. Never return a `DOM` element as this is not a good abstraction over the component.
 
 ## Exposed TestKits
-1. Each component has a `<componentName>TestkitFactory` method which exposes  the test driveri of the relevant to component.
+
+1. Each component has a `<componentName>TestkitFactory` method which exposes the test driver of the relevant to component.
 1. A TestKit input is a wrapper object (DOM node for vanilla, enzyme wrapper for enzyme) and `dataHook`, and returns an object which contains all API methods.
+1. The created Testkit have an `exists` method. And all other methods should throw an error with propper message when `testkit.exists() === false`.
 1. Export your `testkitFactory` from the following files:
   * `wix-style-react/testkit/index.js`
   * `wix-style-react/testkit/enzyme.js`

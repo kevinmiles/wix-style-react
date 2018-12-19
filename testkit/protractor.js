@@ -35,10 +35,12 @@ export const inputAreaTestkitFactory = protractorTestkitFactoryCreator(
 );
 
 import buttonDriverFactory from '../src/Backoffice/Button/Button.protractor.driver';
+import { buttonDriverFactory as buttonNextDriverFactory } from '../src/Button/Button.driver';
 
-export const buttonTestkitFactory = protractorTestkitFactoryCreator(
-  buttonDriverFactory,
-);
+export const buttonTestkitFactory = obj =>
+  obj.wrapper && obj.wrapper.$(`[data-upgrade]`)
+    ? protractorUniTestkitFactoryCreator(buttonNextDriverFactory)(obj)
+    : protractorTestkitFactoryCreator(buttonDriverFactory)(obj);
 
 import tpaButtonDriverFactory from '../src/TPA/Button/Button.protractor.driver';
 

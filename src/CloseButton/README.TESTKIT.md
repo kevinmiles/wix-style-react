@@ -4,17 +4,19 @@
 
 ## CloseButton TestKit API
 
-| method           | arguments | returned value | description                             |
-| ---------------- | --------- | -------------- | --------------------------------------- |
-| exists           | -         | boolean        | returns true if element in the DOM      |
-| click            | -         | -              | clicks on the closeButton               |
-| isButtonDisabled | -         | boolean        | returns true if closeButton is disabled |
+| method           | arguments | returned value | description                        |
+| ---------------- | --------- | -------------- | ---------------------------------- |
+| exists           | -         | boolean        | returns true if element in the DOM |
+| element          | -         | element        | returns the component element      |
+| click            | -         | -              | clicks on the button               |
+| isButtonDisabled | -         | boolean        | returns true if button is disabled |
 
 ## ReactTestUtils Example
 
 ```javascript
 import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
+import CloseButton from 'wix-style-react/CloseButton';
 import { closeButtonTestkitFactory } from 'wix-style-react/dist/testkit';
 
 const div = document.createElement('div');
@@ -41,6 +43,7 @@ expect(testkit.exists()).toBeTruthy();
 ```javascript
 import React from 'react';
 import { mount } from 'enzyme';
+import CloseButton from 'wix-style-react/CloseButton';
 import { closeButtonTestkitFactory } from 'wix-style-react/dist/testkit/enzyme';
 
 const dataHook = 'myDataHook';

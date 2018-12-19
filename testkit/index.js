@@ -7,6 +7,12 @@ import inputDriverFactory from '../src/Input/Input.driver';
 
 export const inputTestkitFactory = testkitFactoryCreator(inputDriverFactory);
 
+import buttonLayoutDriverFactory from '../src/ButtonLayout/ButtonLayout.driver';
+
+export const buttonLayoutTestkitFactory = testkitFactoryCreator(
+  buttonLayoutDriverFactory,
+);
+
 import inputAreaDriverFactory from '../src/InputArea/InputArea.driver';
 
 export const inputAreaTestkitFactory = testkitFactoryCreator(
@@ -110,8 +116,12 @@ export const checkboxTestkitFactory = testkitFactoryCreator(
 );
 
 import buttonDriverFactory from '../src/Backoffice/Button/Button.driver';
+import { buttonDriverFactory as buttonNextDriverFactory } from '../src/Button/Button.driver';
 
-export const buttonTestkitFactory = testkitFactoryCreator(buttonDriverFactory);
+export const buttonTestkitFactory = obj =>
+  obj.wrapper && obj.wrapper.querySelector(`[data-upgrade]`)
+    ? uniTestkitFactoryCreator(buttonNextDriverFactory)(obj)
+    : testkitFactoryCreator(buttonDriverFactory)(obj);
 
 import textLinkDriverFactory from '../src/TextLink/TextLink.driver';
 
@@ -501,6 +511,12 @@ export const proportionTestkitFactory = uniTestkitFactoryCreator(
   proportionDriverFactory,
 );
 
+import { dropdownPopoverDriverFactory } from '../src/DropdownPopover/DropdownPopover.driver';
+
+export const dropdownPopoverTestkitFactory = uniTestkitFactoryCreator(
+  dropdownPopoverDriverFactory,
+);
+
 /*
  * Component generator test component
  */
@@ -508,10 +524,4 @@ import { generatedTestComponentDriverFactory } from '../src/GeneratedTestCompone
 
 export const generatedTestComponentTestkitFactory = uniTestkitFactoryCreator(
   generatedTestComponentDriverFactory,
-);
-
-import { dropdownPopoverDriverFactory } from '../src/DropdownPopover/DropdownPopover.driver';
-
-export const dropdownPopoverTestkitFactory = uniTestkitFactoryCreator(
-  dropdownPopoverDriverFactory,
 );
