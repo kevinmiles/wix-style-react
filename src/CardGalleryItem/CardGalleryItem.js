@@ -113,10 +113,16 @@ class CardGalleryItem extends React.Component {
 
               <Card.Divider />
               <div className={styles.footer}>
-                <Heading appearance="H4" data-hook="title">
+                <Heading appearance="H4" ellipsis data-hook="title">
                   {title}
                 </Heading>
-                <Text size="small" weight="thin" secondary data-hook="subtitle">
+                <Text
+                  size="small"
+                  weight="thin"
+                  secondary
+                  ellipsis
+                  data-hook="subtitle"
+                >
                   {subtitle}
                 </Text>
               </div>
