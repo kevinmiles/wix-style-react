@@ -15,8 +15,8 @@ export const dropdownLayoutDriverFactory = base => {
     optionsLength: () => getOptions().count(),
 
     clickAtOption: async index => {
-      const option = await getOptionAt(index);
-      Simulate.mouseDown(await option.getNative());
+      const option = await getOptionAt(index).getNative();
+      Simulate.mouseDown(option);
     },
 
     isOptionHovered: async index => {
