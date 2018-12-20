@@ -35,8 +35,6 @@ const getSecondaryActionProps = label => ({
 const commonProps = {
   title: 'Card Title',
   subtitle: 'Card subtitle',
-  height: '343px',
-  width: '343px',
   backgroundImageUrl: backgroundImageUrl,
 };
 const exampleProps = {
@@ -45,9 +43,6 @@ const exampleProps = {
     'Card subtitle',
     'Long card content subtitle long card content subtitle',
   ],
-  height: ['200px', '343px', '400px'],
-  width: ['200px', '343px', '400px'],
-  size: ['200px', '343px', '400px'],
   backgroundImageUrl: [
     { label: '4/3', value: imageUrls['4/3'] },
     { label: '16/9', value: imageUrls['16/9'] },

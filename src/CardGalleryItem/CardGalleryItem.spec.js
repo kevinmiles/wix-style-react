@@ -80,6 +80,8 @@ describe('CardGalleryItem', () => {
         />,
       );
 
+      await driver.hover();
+
       expect(await driver.getPrimaryActionLabel()).toBe('Primary');
     });
 
@@ -97,6 +99,7 @@ describe('CardGalleryItem', () => {
         />,
       );
 
+      await driver.hover();
       await driver.clickOnPrimaryAction();
 
       expect(primaryActionOnClick).toHaveBeenCalledTimes(1);
@@ -111,6 +114,8 @@ describe('CardGalleryItem', () => {
           }}
         />,
       );
+
+      await driver.hover();
 
       expect(await driver.getSecondaryActionLabel()).toBe('Secondary');
     });
@@ -129,6 +134,7 @@ describe('CardGalleryItem', () => {
         />,
       );
 
+      await driver.hover();
       await driver.clickOnSecondaryAction();
 
       expect(secondaryActionOnClick).toHaveBeenCalledTimes(1);

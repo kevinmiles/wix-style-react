@@ -8,6 +8,7 @@ import Button from '../Button';
 import TextButton from '../TextButton';
 import Text from '../Text';
 import Heading from '../Heading';
+import Proportion from '../Proportion';
 
 import styles from './CardGalleryItem.scss';
 import animationStyles from './CardGalleryItemAnimation.scss';
@@ -43,15 +44,6 @@ class CardGalleryItem extends React.Component {
     /** className for root */
     className: PropTypes.string,
 
-    /** height of Card */
-    height: PropTypes.string,
-
-    /** width of Card */
-    width: PropTypes.string,
-
-    /** size of Card instead of width and height for square cards */
-    size: PropTypes.string,
-
     /** data-hook value */
     dataHook: PropTypes.string,
   };
@@ -73,16 +65,8 @@ class CardGalleryItem extends React.Component {
       primaryActionProps,
       secondaryActionProps,
       className,
-      height,
-      width,
-      size,
       dataHook,
     } = this.props;
-
-    const style = {
-      height: size || height,
-      width: size || width,
-    };
 
     const hoveredContent = (
       <div className={styles.hoveredContent} data-hook="hovered-content">
@@ -106,39 +90,40 @@ class CardGalleryItem extends React.Component {
     );
 
     return (
-      <div
-        className={classNames(styles.root, className)}
-        onClick={primaryActionProps.onClick}
-        style={style}
-        data-hook={dataHook}
-      >
-        <Card stretchVertically hideOverflow>
-          <Hover
-            classNames={animationStyles}
-            timeout={200}
-            hoveredContent={hoveredContent}
-            dataHook={'hover-component'}
-          >
-            <div
-              className={styles.content}
-              style={{
-                backgroundImage: `url(${backgroundImageUrl})`,
-              }}
-              data-hook="background-image"
-            />
+      <Proportion>
+        <div
+          className={classNames(styles.root, className)}
+          onClick={primaryActionProps.onClick}
+          data-hook={dataHook}
+        >
+          <Card stretchVertically hideOverflow>
+            <Hover
+              classNames={animationStyles}
+              timeout={200}
+              hoveredContent={hoveredContent}
+              dataHook={'hover-component'}
+            >
+              <div
+                className={styles.content}
+                style={{
+                  backgroundImage: `url(${backgroundImageUrl})`,
+                }}
+                data-hook="background-image"
+              />
 
-            <Card.Divider />
-            <div className={styles.footer}>
-              <Heading appearance="H4" data-hook="title">
-                {title}
-              </Heading>
-              <Text size="small" weight="thin" secondary data-hook="subtitle">
-                {subtitle}
-              </Text>
-            </div>
-          </Hover>
-        </Card>
-      </div>
+              <Card.Divider />
+              <div className={styles.footer}>
+                <Heading appearance="H4" data-hook="title">
+                  {title}
+                </Heading>
+                <Text size="small" weight="thin" secondary data-hook="subtitle">
+                  {subtitle}
+                </Text>
+              </div>
+            </Hover>
+          </Card>
+        </div>
+      </Proportion>
     );
   }
 }

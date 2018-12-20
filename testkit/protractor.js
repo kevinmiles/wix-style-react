@@ -386,7 +386,7 @@ export const avatarTestkitFactory = protractorUniTestkitFactoryCreator(
   avatarDriverFactory,
 );
 
-import cardGalleryItemDriverFactory from '../src/CardGalleryItem/CardGalleryItem.protractor.driver';
+import cardGalleryItemDriverFactory from '../src/CardGalleryItem/CardGalleryItem.driver';
 
 export const cardGalleryItemTestkitFactory = protractorUniTestkitFactoryCreator(
   cardGalleryItemDriverFactory,

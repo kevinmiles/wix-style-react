@@ -17,9 +17,10 @@ const autoExampleUrl = createStoryUrl({
 
 describe('CardGalleryItem', () => {
   const eyes = eyesItInstance();
+  let driver;
 
   const createDriver = async (dataHook = storySettings.dataHook) => {
-    const driver = cardGalleryItemTestkitFactory({ dataHook });
+    driver = cardGalleryItemTestkitFactory({ dataHook });
 
     await waitForVisibilityOf(
       await driver.element(),
@@ -32,11 +33,10 @@ describe('CardGalleryItem', () => {
 
   beforeEach(async () => {
     await browser.get(autoExampleUrl);
+    await createDriver();
   });
 
   eyes.it('should be rendered correctly', async () => {
-    const driver = await createDriver();
-
     expect(await driver.getTitle()).toBe('Card Title');
     expect(await driver.getSubtitle()).toBe('Card subtitle');
     expect(await driver.getBackgroundImageUrl()).toBe(
@@ -45,9 +45,14 @@ describe('CardGalleryItem', () => {
   });
 
   describe('on hover', () => {
-    eyes.it('should be rendered correctly', async () => {
-      const driver = await createDriver();
+    beforeEach(async () => {
+      browser
+        .actions()
+        .mouseMove(await driver.element())
+        .perform();
+    });
 
+    eyes.it('should be rendered correctly', async () => {
       expect(await driver.getPrimaryActionLabel()).toBe('Button');
       expect(await driver.getSecondaryActionLabel()).toBe('Text Link');
     });

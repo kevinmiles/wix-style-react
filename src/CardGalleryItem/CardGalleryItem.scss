@@ -5,6 +5,8 @@ $dividerHeight: 1px;
 
 .root {
   cursor: pointer;
+  height: 100%;
+  width: 100%
 }
 
 .content, .hoveredContent {
@@ -23,14 +25,6 @@ $dividerHeight: 1px;
   padding: 10px;
   box-sizing: border-box;
   background-color: rgba($D20, 0.95);
-}
-
-.actionsContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 39px;
 }
 
 .primaryAction {
