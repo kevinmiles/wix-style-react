@@ -15,6 +15,9 @@ export const dropdownPopoverDriverFactory = base => {
     /** Returns the native target element */
     getTargetElement: () => getTargetElement().getNative(),
 
+    /** Returns the native target element */
+    clickTargetElement: () => getTargetElement().click(),
+
     /** Returns `true` if the dropdown is being shown */
     isDropdownShown: async () => await getContentElement().exists(),
 

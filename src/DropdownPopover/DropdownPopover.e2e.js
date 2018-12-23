@@ -37,7 +37,14 @@ describe('DropdownPopover', () => {
     await createDriver();
   });
 
-  eyes.it('should render live example', async () => {
-    await createDriver('story-dropdown-popover-live-example');
+  [
+    'story-dropdown-popover-uncontrolled-click',
+    'story-dropdown-popover-uncontrolled-icon',
+    'story-dropdown-popover-controlled-mouse',
+    'story-dropdown-popover-controlled-input',
+  ].forEach(dataHook => {
+    eyes.it(`should render ${dataHook}`, async () => {
+      await createDriver(dataHook);
+    });
   });
 });

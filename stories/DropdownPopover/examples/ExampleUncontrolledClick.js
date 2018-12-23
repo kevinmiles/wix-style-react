@@ -2,6 +2,7 @@
 
 <div style={{ textAlign: 'center' }}>
   <DropdownPopover
+    data-hook="story-dropdown-popover-uncontrolled-click"
     options={[
       { id: 0, value: 'First option' },
       { id: 1, value: 'Second option' },
@@ -19,4 +20,4 @@
       );
     }}
   </DropdownPopover>
-</div>
+</div>;

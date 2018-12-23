@@ -43,6 +43,7 @@ class ExampleControlledMouse extends React.Component {
 
     return (
       <DropdownPopover
+        data-hook="story-dropdown-popover-controlled-mouse"
         showArrow
         open={open}
         onMouseEnter={this._open}

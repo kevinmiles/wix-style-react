@@ -20,17 +20,17 @@ class ExampleControlledInput extends React.Component {
 
   _open() {
     this.setState({ open: true });
-  };
+  }
 
   _close() {
     this.setState({ open: false });
-  };
+  }
 
   _toggle() {
     this.setState(({ open }) => ({
       open: !open,
     }));
-  };
+  }
 
   _onSelect(selectedOption) {
     console.log('Select option:', selectedOption);
@@ -40,7 +40,7 @@ class ExampleControlledInput extends React.Component {
       open: false,
       value: selectedOption.value,
     });
-  };
+  }
 
   _onChange(e) {
     const { value } = e.target;
@@ -50,7 +50,7 @@ class ExampleControlledInput extends React.Component {
     if (value.trim()) {
       this._open();
     }
-  };
+  }
 
   _onKeyDown(e, delegateKeyDown) {
     const eventWasHandled = delegateKeyDown(e);
@@ -67,13 +67,14 @@ class ExampleControlledInput extends React.Component {
       this._close();
       e.preventDefault();
     }
-  };
+  }
 
   render() {
     const { open, selectedId, value } = this.state;
 
     return (
       <DropdownPopover
+        data-hook="story-dropdown-popover-controlled-input"
         open={open}
         onClickOutside={this._close}
         options={[

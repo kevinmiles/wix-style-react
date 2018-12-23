@@ -10,13 +10,13 @@ The `<DropdownPopover/>` can accept two types of children:
 * A function which returns a React node (a "render prop"). The function can accept a single
     arguments whose value is an object with the following properties:
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| `open(e)` | `Function` | A function that will open the items list. Can be called only when in "Uncontrolled" mode. |
-| `close(e)` | `Function` | A function that will close the items list. Can be called only when in "Uncontrolled" mode. |
-| `toggle(e)` | `Function` | A function that will toggle the items list. Can be called only when in "Uncontrolled" mode. |
-| `delegateKeyDown(e)` | `Function` | The underlaying `<DropdownLayout/>`'s `keydown` handler. It can be called inside another `keydown` event in order to delegate it (can be useful when using the "Controlled" mode). |
-| `selectedOption` | `{ id: any, value: any }`, `null` | The value of the selected option. |
+  | Name | Type | Description |
+  | ---- | ---- | ----------- |
+  | `open(e)` | `Function` | A function that will open the items list. Can be called only when in "Uncontrolled" mode. |
+  | `close(e)` | `Function` | A function that will close the items list. Can be called only when in "Uncontrolled" mode. |
+  | `toggle(e)` | `Function` | A function that will toggle the items list. Can be called only when in "Uncontrolled" mode. |
+  | `delegateKeyDown(e)` | `Function` | The underlaying `<DropdownLayout/>`'s `keydown` handler. It can be called inside another `keydown` event in order to delegate it (can be useful when using the "Controlled" mode). |
+  | `selectedOption` | `{ id: any, value: any }`, `null` | The value of the selected option. |
 
 **Note:** When calling a trigger function, make sure to provide the event to it in order to have the
 best behaviour.
@@ -33,9 +33,9 @@ render prop. For example, to create a basic dropdown that triggers on hover:
 
 ```jsx
 <DropdownPopover>
-  {({ open, close, selectOption }) => (
+  {({ open, close, selectedOption }) => (
     <Button onMouseEnter={open} onMouseLeave={close}>
-      {selectOption ? `Selected item is ${selectOption.value}` : 'Hove me'}
+      {selectedOption ? `Selected item is ${selectedOption.value}` : 'Hove me'}
     </Button>
   )}
 </DropdownPopover>
@@ -52,6 +52,6 @@ In this mode, the `<DropdownPopover/>` component will also handle the following:
 
 In this mode, it's up to you to decide when the list should be opened. You can control it using the
 `open` prop. Note that you'll also need to manage keyboard navigation by yourself (the
-`delegateKeyDown` function may be useful). Check the examples bellow.
+`delegateKeyDown` function may be useful). Check the examples in "Usage" tab.
 
 ----

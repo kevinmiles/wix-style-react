@@ -2,6 +2,7 @@
 
 <div style={{ textAlign: 'center' }}>
   <DropdownPopover
+    data-hook="story-dropdown-popover-uncontrolled-icon"
     showArrow
     options={[
       { id: 0, value: 'First option' },
