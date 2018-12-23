@@ -44,7 +44,8 @@ describe('DropdownPopover', () => {
     'story-dropdown-popover-controlled-input',
   ].forEach(dataHook => {
     eyes.it(`should render ${dataHook}`, async () => {
-      await createDriver(dataHook);
+      const driver = await createDriver(dataHook);
+      await driver.clickTargetElement();
     });
   });
 });
