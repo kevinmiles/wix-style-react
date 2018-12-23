@@ -1,6 +1,6 @@
 import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
 
-// TODO: remove when unidriver will support our needed events triggering
+// TODO: remove when implementation with UniDriver becomes possible
 import { Simulate } from 'react-dom/test-utils';
 
 export const dropdownLayoutDriverFactory = base => {
@@ -14,11 +14,6 @@ export const dropdownLayoutDriverFactory = base => {
 
     optionsLength: () => getOptions().count(),
 
-    clickAtOption: async index => {
-      const option = await getOptionAt(index).getNative();
-      Simulate.mouseDown(option);
-    },
-
     isOptionHovered: async index => {
       const option = await getOptionAt(index);
       return await option.hasClass('hovered');
@@ -27,6 +22,12 @@ export const dropdownLayoutDriverFactory = base => {
     isOptionSelected: async index => {
       const option = await getOptionAt(index);
       return await option.hasClass('selected');
+    },
+
+    // TODO: update when implementation with UniDriver becomes possible
+    clickAtOption: async index => {
+      const option = await getOptionAt(index).getNative();
+      Simulate.mouseDown(option);
     },
   };
 };
